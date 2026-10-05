@@ -2,9 +2,10 @@ import { defineConfig } from 'oxlint';
 
 /**
  * Lint configuration for this repository's own source.
- * The two `jsPlugins` entries are the plugins this package publishes. They are
- * loaded from source on purpose: a change to the metric engine must fail the
- * repository's own lint run, not only the conformance suite.
+ * The single `jsPlugins` entry is the plugin this package publishes: the three
+ * metric rules and the rules vendored from `dmmulroy/anti-slop`, merged. It is
+ * loaded from source on purpose, so a change to any rule it carries must fail
+ * the repository's own lint run, not only the conformance suite.
  */
 export default defineConfig({
   plugins: ['eslint', 'oxc', 'typescript', 'unicorn', 'import', 'promise'],
@@ -23,8 +24,17 @@ export default defineConfig({
   // fail the build on the very cases the conformance suite needs. They are still
   // real TypeScript and are still parsed by the suite; they are simply not code
   // anyone maintains.
-  ignorePatterns: ['oxprobe-artifacts', 'test/fixtures/**'],
-  jsPlugins: ['./src/index.ts', './src/opinionated/index.ts'],
+  //
+  // `vendor/**` is `dmmulroy/anti-slop` as published, and this repository does
+  // not maintain it. Its own source breaks rules enabled below:
+  // `src/shared/lexical-type-parameters.ts` and `src/shared/type-alias-resolution.ts`
+  // both write `as unknown as`, which `no-chained-type-assertions` rejects, and
+  // `src/rules/no-runtime-typeof.ts` narrows with `typeof` inside a method that
+  // is not a type predicate, which `no-runtime-typeof` rejects even with
+  // `allowInTypeGuards`. Those findings cannot be acted on here, so the tree is
+  // out of the lint.
+  ignorePatterns: ['oxprobe-artifacts', 'test/fixtures/**', 'vendor/**'],
+  jsPlugins: ['./src/index.ts'],
   rules: {
     // `cognitive-complexity` keeps the shipped default of 15. It sits in a gap
     // rather than inside a crowd: it names four functions here, and the scores
@@ -47,28 +57,34 @@ export default defineConfig({
     // It therefore still says what it is for: this function is too big. Every
     // function it names at 50 is a real finding and is fixed in code, never by
     // raising the number. AGENTS.md, "Threshold policy", carries the argument.
-    'better-antislop-metrics/cognitive-complexity': ['error', { limit: 15 }],
-    'better-antislop-metrics/max-nesting-depth': ['error', { limit: 4 }],
-    'better-antislop-metrics/min-maintainability-index': ['error', { limit: 50 }],
+    'better-antislop/cognitive-complexity': ['error', { limit: 15 }],
+    'better-antislop/max-nesting-depth': ['error', { limit: 4 }],
+    'better-antislop/min-maintainability-index': ['error', { limit: 50 }],
 
-    // ---- Opinionated house rules ------------------------------------------
+    // ---- Vendored anti-slop house rules ------------------------------------
+    //
+    // These five are on because this repository lints itself with the rules it
+    // publishes, and they are the five it linted itself with before the merge.
+    // The plugin carries 26 rules: the 3 metric rules above and 23 vendored
+    // ones. This block turns on 5. The other 18 stay off here, and that is
+    // deliberate: they have never run over this source, so enabling them blind
+    // would make this repository the guinea pig for rules it does not own.
+    // They are exported and documented for a consumer who has read them and
+    // wants them.
     'better-antislop/no-chained-type-assertions': 'error',
     'better-antislop/require-safety-comment-for-type-assertion': 'error',
-    // `allowInTypePredicateFunctions` is on for this repository's own source.
-    // A type predicate is the remedy the rule's own message recommends: the
-    // function signature names the guarantee, so nothing downstream re-reads
-    // the representation tag. The clearest case is the pair that decodes rule
+    // `allowInTypeGuards` is on for this repository's own source. A type
+    // predicate is the remedy the rule's own message recommends: the function
+    // signature names the guarantee, so nothing downstream re-reads the
+    // representation tag. The clearest case is the pair that decodes rule
     // options out of the config file, `isOptionRecord` and `isNumberValue` in
     // `src/rules/create-metric-rule.ts`, where nothing outside the file knows
     // the shape the JSON had. Without the option the rule reports the remedy it
-    // asks for. The exception is the rule's own documented switch, it is
-    // scoped to functions whose signature is a predicate, and every comparison
-    // outside one is still reported. It stays on everywhere rather than being
-    // listed per file: a boundary decode is a house policy, not a file accident.
-    'better-antislop/no-runtime-typeof-narrowing': [
-      'error',
-      { allowInTypePredicateFunctions: true },
-    ],
+    // asks for. The exception is the rule's own documented switch, it is scoped
+    // to functions whose signature is a predicate, and every comparison outside
+    // one is still reported. It stays on everywhere rather than being listed per
+    // file: a boundary decode is a house policy, not a file accident.
+    'better-antislop/no-runtime-typeof': ['error', { allowInTypeGuards: true }],
     'better-antislop/no-unknown-parameters': 'error',
     'better-antislop/no-object-parameters': 'error',
 

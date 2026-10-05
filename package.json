@@ -11,12 +11,12 @@
   ],
   "license": "MIT",
   "files": [
-    "src"
+    "src",
+    "vendor"
   ],
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
-    "./opinionated": "./src/opinionated/index.ts"
+    ".": "./src/index.ts"
   },
   "publishConfig": {
     "access": "public"
@@ -24,11 +24,13 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
-    "test": "bun test",
+    "test": "bun test ./test/",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
-    "check": "bun run typecheck && bun run lint && bun run test && bun run conformance && bun run format:check",
-    "conformance": "bun tools/conformance/index.ts"
+    "check": "bun run typecheck && bun run lint && bun run test && bun run conformance && bun run vendor:test && bun run format:check",
+    "conformance": "bun tools/conformance/index.ts",
+    "vendor:sync": "bun scripts/vendor-sync.ts",
+    "vendor:test": "node --test vendor/anti-slop/src/rules/*.test.ts vendor/anti-slop/src/effect/rules/*.test.ts"
   },
   "dependencies": {
     "@oxlint/plugins": "1.87.0",

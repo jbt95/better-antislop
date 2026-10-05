@@ -1,8 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { RuleTester } from 'oxlint/plugins-dev';
 import type { Options, Plugin, Rule } from '@oxlint/plugins';
-import metricsPlugin from '../../src/index.ts';
-import opinionatedPlugin from '../../src/opinionated/index.ts';
+import betterAntislop from '../../src/index.ts';
 import {
   isCount,
   isList,
@@ -29,10 +28,9 @@ import {
  * below `decodeSpec` ever looks at a raw representation tag.
  */
 
-/** Every plugin this package publishes, under the name a consumer configures. */
+/** The one plugin this package publishes, under the name a consumer configures. */
 const PUBLISHED: Readonly<Record<string, Plugin>> = {
-  'better-antislop-metrics': metricsPlugin,
-  'better-antislop': opinionatedPlugin,
+  'better-antislop': betterAntislop,
 };
 
 /** Fixtures are TypeScript: several rules only have anything to say about types. */

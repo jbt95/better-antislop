@@ -10,7 +10,7 @@ import { INDEX_ABOVE_THE_LIMIT, INDEX_BELOW_THE_LIMIT } from '../support/fixture
  * below a limit it equals.
  */
 describeRule({
-  plugin: 'better-antislop-metrics',
+  plugin: 'better-antislop',
   rule: 'min-maintainability-index',
   cases: {
     valid: [

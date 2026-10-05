@@ -8,7 +8,7 @@ import { nestedIfs } from '../support/fixtures.ts';
  * shape: see `nestedIfs`.
  */
 describeRule({
-  plugin: 'better-antislop-metrics',
+  plugin: 'better-antislop',
   rule: 'cognitive-complexity',
   cases: {
     valid: [

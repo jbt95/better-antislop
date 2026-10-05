@@ -12,5 +12,5 @@
   "objectWrap": "preserve",
   "endOfLine": "lf",
   "insertFinalNewline": true,
-  "ignorePatterns": ["node_modules", "dist", "oxprobe-artifacts", "test/fixtures"]
+  "ignorePatterns": ["node_modules", "dist", "oxprobe-artifacts", "test/fixtures", "vendor"]
 }
