@@ -9,11 +9,14 @@ import { cognitiveComplexity, maxNestingDepth, minMaintainabilityIndex } from '.
  * one `jsPlugins` entry and one rule prefix.
  *
  * The order of the spreads is the contract, not a style choice. A later spread
- * wins a name collision, so the metric rules come last: if a vendored rule ever
- * takes one of their names, this repository's implementation stays the one the
- * plugin exports rather than being replaced by a rule from a dependency. The
- * order of everything before them is not load-bearing, and it is still written
- * out so a reader can see which vendored tree each rule came from.
+ * wins a name collision, and the metric rules come last on purpose: they are
+ * the rules this repository wrote, specified in `docs/metrics.md` and checked
+ * against a recorded corpus by the conformance suite. A vendored rule taking
+ * one of their names must not silently displace a rule that carries both a
+ * specification and a verification, so an upstream sync cannot replace one
+ * behind a consumer's back. The order of everything before them is not
+ * load-bearing; it is written out so a reader can see which vendored tree each
+ * rule came from.
  *
  * The vendored trees keep their own `meta.name`. Only `rules` is read here, so
  * the published prefix is this plugin's own and the two names do not leak.

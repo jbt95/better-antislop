@@ -281,6 +281,17 @@ Inside a rule, walk the AST with `context.sourceCode.visitorKeys[node.type]`. A
 visitor key value may be a single node or an array of nodes; handle both. Do
 not walk `node.parent` chains.
 
+### 9. The metric rules win a name collision
+
+In `src/index.ts` the metric rules are spread last, so they win any name a
+vendored rule also claims. Keep it that way. They are the only rules this
+repository wrote, the only ones `docs/metrics.md` specifies, and the only ones
+the conformance suite checks against a recorded corpus. A vendored rule is
+third-party code that arrives with a sync; if one took a metric rule's name it
+would replace a specified and verified rule with an unverified one, silently, in
+an upgrade nobody was reviewing for that. Reordering the spreads is a policy
+change, not a cleanup.
+
 ## Style
 
 `.oxfmtrc.json` is authoritative: single quotes, semicolons, two-space indent,
