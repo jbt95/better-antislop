@@ -1,7 +1,7 @@
 {
   "name": "oxlint-plugin-better-antislop",
   "version": "0.1.0",
-  "description": "Oxlint rules that reject low-evidence TypeScript patterns and gate function-level complexity metrics ported from leadline.",
+  "description": "Oxlint rules that reject low-evidence TypeScript patterns and gate function-level complexity metrics.",
   "keywords": [
     "complexity",
     "eslint-plugin",
@@ -27,8 +27,8 @@
     "test": "bun test",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
-    "check": "bun run typecheck && bun run lint && bun run test && bun run format:check",
-    "parity": "bun tools/parity/index.ts"
+    "check": "bun run typecheck && bun run lint && bun run test && bun run conformance && bun run format:check",
+    "conformance": "bun tools/conformance/index.ts"
   },
   "dependencies": {
     "@oxlint/plugins": "1.87.0",

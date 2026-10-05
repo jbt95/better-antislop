@@ -2,10 +2,9 @@ import { defineConfig } from 'oxlint';
 
 /**
  * Lint configuration for this repository's own source.
- *
  * The two `jsPlugins` entries are the plugins this package publishes. They are
  * loaded from source on purpose: a change to the metric engine must fail the
- * repository's own lint run, not only the parity harness.
+ * repository's own lint run, not only the conformance suite.
  */
 export default defineConfig({
   plugins: ['eslint', 'oxc', 'typescript', 'unicorn', 'import', 'promise'],
@@ -17,8 +16,14 @@ export default defineConfig({
     correctness: 'error',
   },
   // `node_modules` and `dist` are already covered by `.gitignore`, which oxlint
-  // reads by default. `oxprobe-artifacts` holds parity captures, not source.
-  ignorePatterns: ['oxprobe-artifacts'],
+  // reads by default.
+  //
+  // `test/fixtures` is test data, not source. Its files exist precisely to be
+  // over the complexity thresholds this package enforces, so linting them would
+  // fail the build on the very cases the conformance suite needs. They are still
+  // real TypeScript and are still parsed by the suite; they are simply not code
+  // anyone maintains.
+  ignorePatterns: ['oxprobe-artifacts', 'test/fixtures/**'],
   jsPlugins: ['./src/index.ts', './src/opinionated/index.ts'],
   rules: {
     // `cognitive-complexity` keeps the shipped default of 15. It sits in a gap

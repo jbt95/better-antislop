@@ -15,7 +15,7 @@ import type { HalsteadMetrics } from './types.ts';
  * every score the report carries: logical lines, cyclomatic complexity, cognitive
  * complexity, maximum nesting, direct self-recursion and the Halstead tally.
  *
- * The scoring rules are the published ones in `leadline/docs/metrics.md`. The
+ * The scoring rules are the ones specified in `docs/metrics.md`, §3 to §6. The
  * decision constructs are read from a table, so adding one is an entry rather
  * than another branch.
  */

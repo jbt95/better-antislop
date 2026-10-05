@@ -24,9 +24,9 @@ export function nestedIfs(levels: number): string {
  * A function whose maintainability index is `64.99188980245168`, just under
  * the shipped limit of 65 and inside the window that rounds onto it.
  *
- * The shape is fixed by that number: seven lines, ten distinct operands, two
- * distinct operators and no branch, which is what puts the index a hundredth
- * below the limit instead of a tenth below it.
+ * The shape is fixed by that number: seven lines, three distinct operators,
+ * twelve distinct operands and no branch, which is what puts the index a
+ * hundredth below the limit instead of a tenth below it.
  */
 export const INDEX_BELOW_THE_LIMIT = [
   'export function ledgerTotal(seed: number): number {',

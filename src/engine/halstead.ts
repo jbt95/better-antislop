@@ -9,9 +9,13 @@ import type { HalsteadMetrics } from './types.ts';
  * `this`, `super` and template fragments are operands. Both occurrences and
  * distinct values are counted, and distinctness is by token text.
  *
- * This is a node-level port. `leadline` reads anonymous grammar tokens; ESTree
- * folds each token into a field on its parent, so `recordTokens` recovers the
- * token from the node that carries it.
+ * The accounting is node-level. An ESTree node folds each token it wrote into a
+ * field rather than exposing the token itself, so `recordTokens` recovers the
+ * tokens from the node that carries them. Reading the tree by node is the only
+ * shape the parser supports, and it is also the shape the walk needs: a node is
+ * visited once, so a construct whose tokens depend on what it says — an
+ * optional call, a delegating `yield` — is resolved by a function instead of a
+ * lookup in a flat token list.
  */
 
 /** Operator and operand occurrences for one function, in source order. */
@@ -178,7 +182,11 @@ function yieldTokens(node: ESTree.Node): TokenGroup | null {
   return node.delegate ? operator('yield', '*') : operator('yield');
 }
 
-/** The colon of `{ a: 1 }`; `{ a }` and `{ a() {} }` write none. */
+/**
+ * The colon of `{ a: 1 }`, and the method shorthand `{ a() {} }`. `{ a }`
+ * writes none, and neither does a `get`/`set` accessor, whose kind is `get`
+ * or `set`.
+ */
 function propertyColon(node: ESTree.Node): TokenGroup | null {
   if (node.type !== 'Property') return null;
   return node.kind === 'init' && !node.shorthand ? operator(':') : null;

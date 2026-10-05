@@ -3,7 +3,7 @@
  *
  * This module is pure: it turns one ESTree `Program` into plain data and
  * touches no oxlint runtime, no filesystem, and no Effect runtime. That is
- * what lets the parity harness and the rule tests exercise it directly.
+ * what lets the conformance suite and the rule tests exercise it directly.
  */
 
 /** A half-open source position, 1-based line and 0-based column. */
@@ -28,7 +28,7 @@ export type FunctionKind =
   | 'anonymous';
 
 /**
- * Halstead measures, as defined by `leadline/docs/metrics.md`.
+ * Halstead measures, as specified in `docs/metrics.md` §7.
  *
  * `n1`/`n2` count distinct operators/operands; `N1`/`N2` count their total
  * occurrences. `volume`, `difficulty` and `effort` derive from those four.

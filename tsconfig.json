@@ -25,5 +25,6 @@
     "noUnusedParameters": true,
     "skipLibCheck": true
   },
-  "include": ["src", "tools", "test", "*.ts"]
+  "include": ["src", "tools", "test", "*.ts"],
+  "exclude": ["test/fixtures"]
 }

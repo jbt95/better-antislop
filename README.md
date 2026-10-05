@@ -2,13 +2,20 @@
 
 Two oxlint plugins in one package:
 
-- **`better-antislop-metrics`** — code-metric rules that reproduce the numbers of
-  the `leadline` Rust engine inside an editor.
+- **`better-antislop-metrics`** — code-metric rules, defined and documented by
+  this package. Every value is specified in [`docs/metrics.md`](docs/metrics.md).
 - **`better-antislop`** — opinionated anti-slop rules, in the spirit of
   [`dmmulroy/anti-slop`](https://github.com/dmmulroy/anti-slop).
 
 The metric rules are the reason this package exists. The opinionated rules are
 the anti-slop half, and this repository lints itself with both.
+
+The metrics are not copied from another tool and they are not invented between
+one edit and the next. [`docs/metrics.md`](docs/metrics.md) is the normative
+specification of every value the engine emits for one function: where each
+formula comes from, what counts as a decision, which tokens are operators, and
+the exact worked examples that settle a disagreement. This README is the user
+guide; that document is the contract.
 
 ## Why it exists
 
@@ -23,28 +30,47 @@ cyclomatic complexity can need very different amounts of work to read. Cyclomati
 complexity cannot tell them apart. Cognitive complexity can.
 
 The second reason is fidelity. Slop is not a taste, it is a measurable shape, and
-a threshold is only as useful as the number behind it. Rather than invent
-metrics, this package ports the ones `leadline` already defines, so the number in
-your editor is the number in the report. See
-[Verifying parity against leadline](#verifying-parity-against-leadline).
+a threshold is only as useful as the number behind it. So the numbers are
+written down first and the code is held to them: the specification owns the
+rules, a conformance suite holds the implementation to the specification, and a
+finding can always be traced to the section that defines it. See
+[`docs/metrics.md`](docs/metrics.md) and
+[Conformance](#conformance).
 
 ## Evidence
 
-A prototype plugin reproduced the `leadline` Rust engine on **2603 of 2623
-functions (99.24%)** on a 258-file TypeScript codebase. The agreement is
-per-function, over the metrics `leadline` reports, which today means cognitive and
-cyclomatic complexity.
+Two things back this package: a specification that owns every number, and a
+check that fails when the code stops agreeing with it.
 
-Cost measured on that same codebase:
+**The specification.** [`docs/metrics.md`](docs/metrics.md) defines every metric
+the engine emits, per function, and says where each one comes from. Where the
+cited literature leaves a choice open, the document states the choice and
+defends it. Every rule this package reports traces to a section there.
+
+**The conformance suite.** `tools/conformance/index.ts` runs the engine over the
+checked-in fixture corpus in `test/fixtures/metrics/` and compares every value
+against expectations derived from the specification. The corpus is 70 small
+TypeScript programs, each written so that one rule is easy to check and one
+wrong answer is easy to find; `test/fixtures/metrics/README.md` lists what each
+one isolates. See [Conformance](#conformance).
+
+That corpus covers every metric the specification defines, including maximum
+nesting depth and the maintainability index, so both are checked against
+written expectations rather than assumed.
+
+**The test suite.** `bun test` runs 77 tests across 8 files, covering the
+metric rules and the opinionated rules through oxlint's own `RuleTester`.
+
+Cost, measured on a 561-file TypeScript corpus (7081 functions, median of 11
+runs):
 
 | Run                            | Time   |
 | ------------------------------ | ------ |
-| oxlint baseline                | 70 ms  |
-| oxlint with the metrics plugin | 186 ms |
-| `leadline` native              | 59 ms  |
+| oxlint baseline                | 32 ms  |
+| oxlint with the metrics plugin | 195 ms |
 
-The plugin adds about 116 ms to a full lint of 2623 functions. No build step, no
-daemon, no second tool to keep in sync.
+The plugin adds about 162 ms to a full lint of 7081 functions. No build step, no
+daemon, no second process to keep in sync.
 
 ## Install
 
@@ -422,49 +448,39 @@ interface ApplyOptions {
 function apply(options: ApplyOptions): void {}
 ```
 
-## Verifying parity against leadline
+## Conformance
 
-`tools/parity/index.ts` is an Effect CLI that runs the `leadline` binary over a
-corpus, collects this plugin's metrics over the same corpus, and compares them
-function by function.
-
-```sh
-bun tools/parity/index.ts <dir>
-```
-
-- The directory argument is optional and defaults to `.`. `--help` prints usage
-  and the exit-code table.
-- It needs `leadline` on `PATH`. Set `LEADLINE_BIN` to an absolute path when it
-  is not there. `oxlint` comes from this repository's own
-  `node_modules/.bin`, so `bun install` must have run.
-- It compares `cognitive` and `cyclomatic` for every function, matching them on
-  `(basename, start line)`. Names are compared only when both sides named the
-  function, which excludes anonymous ones.
-- It exits `0` when every compared function agrees. It exits `1` on any
-  mismatch, on a row that is unmatched on either side, on an ambiguous match key,
-  on a failed run, and when zero functions were compared. Zero functions
-  compared is a failure, not a pass.
-
-**Nesting is not covered by a default run.** `leadline analyze --format
-agent-json` emits `cognitive`, `cyclomatic`, `line` and `name`, and no nesting
-field, so `skipped nesting` in the report equals the number of compared
-functions. The harness reports the skip instead of inventing a value, and
-compares nesting automatically if a format ever supplies it.
-
-`tools/parity/README.md` documents the report format, how rows are matched, and
-the typed errors the harness fails into.
-
-The corpus is a directory, not a list, so pointing it at a checkout is enough:
+`tools/conformance/index.ts` runs the metric engine over the checked-in fixture
+corpus in `test/fixtures/metrics/` and compares every value it emits against
+expectations derived from [`docs/metrics.md`](docs/metrics.md).
 
 ```sh
-bun tools/parity/index.ts ../some-large-typescript-repo
+bun tools/conformance/index.ts
 ```
 
-Run it after every change to metric scoring. A scoring change that has not passed
-parity is not finished.
+From a checkout, `bun run conformance` is a thin alias for exactly that
+invocation.
 
-From a checkout of this repository the same thing is `bun run parity`, with the
-directory passed after `--`.
+- With no arguments it **checks**: every fixture is analysed and every metric is
+  compared. It exits non-zero on any difference.
+- `--update` **rewrites the expectation file** from the current output.
+
+`--update` is not a fix and not a shortcut around review. It is how you _propose_
+a change to a metric: the rewritten expectations then have to be read, one by
+one, against the section of `docs/metrics.md` that owns the number, and accepted
+only when the code agrees with the specification and the specification is right.
+A diff that nobody checked against the specification is not a metric change, it
+is a regression with a passing test.
+
+Run it after every change to metric scoring. A scoring change that has not
+passed the conformance suite is not finished.
+
+`tools/conformance/README.md` has the detail: how expectations are stored and
+formatted, which node shapes the corpus covers, and how to read a failure.
+
+The engine itself is a pure function over an ESTree `Program`, so the suite can
+call it directly and the rule tests can do the same. That is why scoring is
+testable without a linter in the loop.
 
 ## Analysis boundaries
 
@@ -499,11 +515,13 @@ is why `cognitive-complexity`, `max-nesting-depth` and
 `min-maintainability-index` can never drift apart, and why the same numbers can
 be produced by a test harness without a linter.
 
-Five details where a naive port silently diverges from `leadline`, and where this
-implementation is deliberate:
+Five details these metrics are easy to get wrong, in a way that still produces
+plausible numbers. Each is stated in [`docs/metrics.md`](docs/metrics.md) and
+each has a fixture in the corpus that settles it:
 
 - `??` is an ESTree `LogicalExpression` too, but it is not a branch, so it
-  scores `0`.
+  scores `0`. It is still an operator for Halstead purposes, because it combines
+  two values like any other.
 - Logical operators are read in **source order**, not preorder. In
   `a || b && c || d && e` the operators are `||`, `&&`, `||`, `&&` and the
   function scores `4`. A preorder walk would see `||`, `||`, `&&`, `&&` and
@@ -512,7 +530,8 @@ implementation is deliberate:
   `catch` does.
 - `else` adds a flat `1` and raises nothing. An `else if` continues the chain,
   also adds `1`, and raises nothing.
-- A `switch` header scores `0`; its `case` arms are the branch points.
+- A `switch` header scores `0`; its `case` arms are the branch points. A
+  `default:` arm has no test, so it is not a branch point either.
 
 ## License
 

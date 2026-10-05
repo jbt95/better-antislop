@@ -10,10 +10,10 @@ plugins. Its `exports` map points straight at the TypeScript source: `.` resolve
 to `./src/index.ts` and `./opinionated` resolves to
 `./src/opinionated/index.ts`.
 
-| Plugin name               | Entry file                 | Purpose                                                   |
-| ------------------------- | -------------------------- | --------------------------------------------------------- |
-| `better-antislop-metrics` | `src/index.ts`             | Code-metric rules ported from the `leadline` Rust engine. |
-| `better-antislop`         | `src/opinionated/index.ts` | Opinionated anti-slop rules.                              |
+| Plugin name               | Entry file                 | Purpose                                            |
+| ------------------------- | -------------------------- | -------------------------------------------------- |
+| `better-antislop-metrics` | `src/index.ts`             | Code-metric rules, specified in `docs/metrics.md`. |
+| `better-antislop`         | `src/opinionated/index.ts` | Opinionated anti-slop rules.                       |
 
 The repository lints itself with both plugins. `oxlint.config.ts` holds the
 thresholds and turns every rule on, so a change to a rule can fail this
@@ -63,11 +63,11 @@ bun run lint            # oxlint, reads oxlint.config.ts
 bun run format          # oxfmt, writes formatting, reads .oxfmtrc.json
 bun run format:check    # oxfmt --check
 bun run check           # typecheck + lint + format:check
-bun run parity          # bun tools/parity/index.ts
+bun run conformance     # bun tools/conformance/index.ts
 bun test                # bun test
 ```
 
-`bun run check` is the single pre-commit gate. `bun run parity` is the extra
+`bun run check` is the single pre-commit gate. `bun run conformance` is the extra
 step required after any change to metric scoring.
 
 `oxlint.config.ts` is a TypeScript config file. oxlint loads it with Node's
@@ -82,13 +82,14 @@ type stripping, so it needs Node 22.18 or newer, or Bun. The package declares
 clock, no randomness, no network. It takes an ESTree `Program` and returns
 plain data.
 
-This is not a style preference. The parity harness and the rule tests call the
-engine directly, and a hidden IO call makes those two unusable.
+This is not a style preference. The conformance suite and the rule tests call
+the engine directly, and a hidden IO call makes those two unusable.
 
-Effect belongs only at a real IO seam, and in this repository there is exactly
-one such place: `tools/parity/`, which runs `leadline` as a subprocess and
-reads its output. Use `Data.TaggedError` for typed failures, `Effect.gen` for
-sequencing, `Effect.tryPromise` and `Effect.runPromise` at the boundary.
+Effect belongs only at a real IO seam, and in this repository that means the
+conformance suite's own boundaries: spawning the Node process that parses a
+fixture, reading the corpus off disk, and reading and writing the expectation
+file. Use `Data.TaggedError` for typed failures, `Effect.gen` for sequencing,
+`Effect.tryPromise` and `Effect.runPromise` at the boundary.
 
 ### 2. `context.options` is `null` when `createOnce` runs
 
@@ -104,29 +105,29 @@ tilde. The JS plugin API in `@oxlint/plugins` is versioned in lockstep with the
 oxlint binary that loads it. A mismatch makes the host and the plugin disagree
 about the AST shape or the rule contract.
 
-### 4. Run the parity tool after any change to scoring
+### 4. Run the conformance suite after any change to scoring
 
 Any edit to the metric engine, to a metric rule, or to the nesting, logical
 sequence or Halstead model is a scoring change. Run:
 
 ```sh
-bun run parity -- <corpus>
+bun run conformance
 ```
 
-It exits `0` when every compared function matches the `leadline` engine, and
-`1` on any mismatch, on any unmatched row, on an ambiguous match key, on a
-typed failure, or when zero functions were compared. Do not commit a scoring
-change that has not passed it.
+It analyses every fixture in `test/fixtures/metrics/` and compares every metric
+against the expectation file. It exits `0` when they all agree and non-zero on
+any difference. Do not commit a scoring change that has not passed it.
 
-It needs `leadline` on `PATH`, or `LEADLINE_BIN` set to an absolute path. `oxlint`
-comes from this repository's own `node_modules/.bin`.
+The suite covers every metric `docs/metrics.md` defines, including nesting and
+the maintainability index, so a passing run is evidence for all three rules.
 
-A default run compares `cognitive` and `cyclomatic` only. `leadline analyze
---format agent-json` carries no nesting field, so the report's `skipped nesting`
-count equals the number of compared functions. Do not read a passing run as
-evidence that `max-nesting-depth` is correct; it is not covered.
+`--update` rewrites the expectations from the current output. It is how you
+propose a metric change, not how you approve one: read the rewritten diff
+against the section of `docs/metrics.md` that owns each number, and treat a
+change as unverified until you have. Never run `--update` and commit in the same
+step.
 
-See `tools/parity/README.md` for the report format and the match key.
+See `tools/conformance/README.md` for the expectation format and the corpus.
 
 ### 5. No type assertions
 
@@ -169,4 +170,4 @@ assertion, so write a type guard when the compiler loses track.
 ## Before you finish
 
 Run `bun run check` (typecheck, lint and format check) and `bun test`. If you
-touched scoring, also run `bun run parity -- <corpus>`.
+touched scoring, also run `bun run conformance`.

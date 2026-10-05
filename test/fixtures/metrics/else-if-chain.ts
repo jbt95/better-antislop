@@ -1,0 +1,11 @@
+export function elseIfChain(a: boolean, b: boolean, c: boolean): number {
+  if (a) {
+    return 1;
+  } else if (b) {
+    return 2;
+  } else if (c) {
+    return 3;
+  } else {
+    return 0;
+  }
+}

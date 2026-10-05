@@ -1,0 +1,3178 @@
+{
+  "specification": "docs/metrics.md",
+  "fixtures": {
+    "test/fixtures/metrics/class-accessor-getter-setter.ts": {
+      "functions": [
+        {
+          "kind": "getter",
+          "name": "value",
+          "line": 4,
+          "column": 2,
+          "signature": "get value(): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 3,
+            "totalOperators": 1,
+            "totalOperands": 3,
+            "vocabulary": 4,
+            "length": 4,
+            "volume": 8,
+            "difficulty": 0.5,
+            "effort": 4
+          },
+          "maintainabilityIndex": 83.13414322037512,
+          "recursive": false
+        },
+        {
+          "kind": "setter",
+          "name": "value",
+          "line": 8,
+          "column": 2,
+          "signature": "set value(next: number)",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 5,
+            "totalOperators": 4,
+            "totalOperands": 7,
+            "vocabulary": 9,
+            "length": 11,
+            "volume": 34.86917501586544,
+            "difficulty": 2.8,
+            "effort": 97.63369004442322
+          },
+          "maintainabilityIndex": 71.9562338891291,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/class-field-arrow-function.ts": {
+      "functions": [
+        {
+          "kind": "arrow",
+          "name": "handle",
+          "line": 2,
+          "column": 2,
+          "signature": "handle = (value: number): number =>",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 3,
+          "cognitive": 2,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 6,
+            "distinctOperands": 4,
+            "totalOperators": 7,
+            "totalOperands": 8,
+            "vocabulary": 10,
+            "length": 15,
+            "volume": 49.82892142331043,
+            "difficulty": 6,
+            "effort": 298.9735285398626
+          },
+          "maintainabilityIndex": 70.73614014646783,
+          "recursive": false
+        },
+        {
+          "kind": "arrow",
+          "name": "create",
+          "line": 9,
+          "column": 2,
+          "signature": "static create = (): Handler =>",
+          "lines": 1,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 2,
+            "totalOperators": 2,
+            "totalOperands": 2,
+            "vocabulary": 4,
+            "length": 4,
+            "volume": 8,
+            "difficulty": 1,
+            "effort": 8
+          },
+          "maintainabilityIndex": 93.54204911302038,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/class-method-instance-and-static.ts": {
+      "functions": [
+        {
+          "kind": "method",
+          "name": "format",
+          "line": 2,
+          "column": 2,
+          "signature": "format(value: number): string",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 5,
+            "totalOperators": 4,
+            "totalOperands": 7,
+            "vocabulary": 8,
+            "length": 11,
+            "volume": 33,
+            "difficulty": 2.0999999999999996,
+            "effort": 69.29999999999998
+          },
+          "maintainabilityIndex": 72.12377618647942,
+          "recursive": false
+        },
+        {
+          "kind": "method",
+          "name": "create",
+          "line": 9,
+          "column": 2,
+          "signature": "static create(): Formatter",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 2,
+            "totalOperators": 2,
+            "totalOperands": 2,
+            "vocabulary": 4,
+            "length": 4,
+            "volume": 8,
+            "difficulty": 1,
+            "effort": 8
+          },
+          "maintainabilityIndex": 83.13414322037512,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/class-parameter-properties.ts": {
+      "functions": [
+        {
+          "kind": "constructor",
+          "name": "constructor",
+          "line": 4,
+          "column": 2,
+          "signature": "constructor( private readonly step: number, public label: string, )",
+          "lines": 6,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 5,
+            "totalOperators": 1,
+            "totalOperands": 6,
+            "vocabulary": 6,
+            "length": 7,
+            "volume": 18.094737505048094,
+            "difficulty": 0.6,
+            "effort": 10.856842503028856
+          },
+          "maintainabilityIndex": 74.08553603293765,
+          "recursive": false
+        },
+        {
+          "kind": "method",
+          "name": "advance",
+          "line": 11,
+          "column": 2,
+          "signature": "advance(): number",
+          "lines": 4,
+          "logicalLines": 2,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 4,
+            "totalOperators": 2,
+            "totalOperands": 7,
+            "vocabulary": 6,
+            "length": 9,
+            "volume": 23.264662506490403,
+            "difficulty": 1.75,
+            "effort": 40.71315938635821
+          },
+          "maintainabilityIndex": 77.1625534155643,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/class-private-name.ts": {
+      "functions": [
+        {
+          "kind": "method",
+          "name": "read",
+          "line": 4,
+          "column": 2,
+          "signature": "read(): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 3,
+            "totalOperators": 1,
+            "totalOperands": 3,
+            "vocabulary": 4,
+            "length": 4,
+            "volume": 8,
+            "difficulty": 0.5,
+            "effort": 4
+          },
+          "maintainabilityIndex": 83.13414322037512,
+          "recursive": false
+        },
+        {
+          "kind": "method",
+          "name": "write",
+          "line": 8,
+          "column": 2,
+          "signature": "write(value: number): void",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 4,
+            "totalOperators": 1,
+            "totalOperands": 5,
+            "vocabulary": 5,
+            "length": 6,
+            "volume": 13.931568569324174,
+            "difficulty": 0.625,
+            "effort": 8.707230355827608
+          },
+          "maintainabilityIndex": 81.44728802389771,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/class-static-block.ts": {
+      "functions": []
+    },
+    "test/fixtures/metrics/else-arm-single.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "singleElse",
+          "line": 1,
+          "column": 7,
+          "signature": "function singleElse(flag: boolean): number",
+          "lines": 7,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 2,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 4,
+            "totalOperators": 4,
+            "totalOperands": 5,
+            "vocabulary": 7,
+            "length": 9,
+            "volume": 25.26619429851844,
+            "difficulty": 1.875,
+            "effort": 47.374114309722074
+          },
+          "maintainabilityIndex": 71.4754535562128,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/else-if-chain-without-trailing-else.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "elseIfChainNoElse",
+          "line": 1,
+          "column": 7,
+          "signature": "function elseIfChainNoElse(a: boolean, b: boolean): number",
+          "lines": 8,
+          "logicalLines": 5,
+          "parameters": 2,
+          "cyclomatic": 3,
+          "cognitive": 2,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 6,
+            "totalOperators": 6,
+            "totalOperands": 8,
+            "vocabulary": 9,
+            "length": 14,
+            "volume": 44.37895002019237,
+            "difficulty": 2,
+            "effort": 88.75790004038474
+          },
+          "maintainabilityIndex": 68.3629635562831,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/else-if-chain.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "elseIfChain",
+          "line": 1,
+          "column": 7,
+          "signature": "function elseIfChain(a: boolean, b: boolean, c: boolean): number",
+          "lines": 11,
+          "logicalLines": 7,
+          "parameters": 3,
+          "cyclomatic": 4,
+          "cognitive": 4,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 8,
+            "totalOperators": 10,
+            "totalOperands": 11,
+            "vocabulary": 11,
+            "length": 21,
+            "volume": 72.64806399138324,
+            "difficulty": 2.0625,
+            "effort": 149.83663198222794
+          },
+          "maintainabilityIndex": 63.712770483202796,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/generator-function-star.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "counter",
+          "line": 1,
+          "column": 7,
+          "signature": "function* counter(limit: number): Generator<number>",
+          "lines": 5,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 5,
+            "totalOperators": 5,
+            "totalOperands": 9,
+            "vocabulary": 10,
+            "length": 14,
+            "volume": 46.50699332842307,
+            "difficulty": 4.5,
+            "effort": 209.2814699779038
+          },
+          "maintainabilityIndex": 72.80770280833579,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/generator-object-method.ts": {
+      "functions": [
+        {
+          "kind": "anonymous",
+          "name": null,
+          "line": 2,
+          "column": 8,
+          "signature": "(): Generator<number>",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 1,
+            "totalOperators": 2,
+            "totalOperands": 1,
+            "vocabulary": 3,
+            "length": 3,
+            "volume": 4.754887502163468,
+            "difficulty": 1,
+            "effort": 4.754887502163468
+          },
+          "maintainabilityIndex": 84.71624627594792,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/generator-yield-delegate.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "delegating",
+          "line": 1,
+          "column": 7,
+          "signature": "function* delegating(source: Generator<number>): Generator<number>",
+          "lines": 4,
+          "logicalLines": 2,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 4,
+            "totalOperands": 4,
+            "vocabulary": 5,
+            "length": 8,
+            "volume": 18.575424759098897,
+            "difficulty": 1.3333333333333333,
+            "effort": 24.76723301213186
+          },
+          "maintainabilityIndex": 77.84705623999825,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/jsx-attributes-and-children.tsx": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "List",
+          "line": 1,
+          "column": 7,
+          "signature": "function List(props: { items: string[] }): JSX.Element",
+          "lines": 9,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 5,
+            "totalOperators": 1,
+            "totalOperands": 7,
+            "vocabulary": 6,
+            "length": 8,
+            "volume": 20.67970000576925,
+            "difficulty": 0.7,
+            "effort": 14.475790004038473
+          },
+          "maintainabilityIndex": 69.83822726510152,
+          "recursive": false
+        },
+        {
+          "kind": "arrow",
+          "name": null,
+          "line": 4,
+          "column": 23,
+          "signature": "(item) =>",
+          "lines": 3,
+          "logicalLines": 0,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 3,
+            "totalOperators": 1,
+            "totalOperands": 6,
+            "vocabulary": 4,
+            "length": 7,
+            "volume": 14,
+            "difficulty": 1,
+            "effort": 14
+          },
+          "maintainabilityIndex": 81.43238760793993,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/jsx-conditional-render.tsx": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "Panel",
+          "line": 1,
+          "column": 7,
+          "signature": "function Panel(props: { title: string; visible: boolean }): JSX.Element",
+          "lines": 10,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 9,
+            "totalOperators": 4,
+            "totalOperands": 15,
+            "vocabulary": 12,
+            "length": 19,
+            "volume": 68.11428751370197,
+            "difficulty": 2.5,
+            "effort": 170.28571878425493
+          },
+          "maintainabilityIndex": 65.08067200544245,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/jump-labelled-break.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "labelledBreak",
+          "line": 1,
+          "column": 7,
+          "signature": "function labelledBreak(rows: number[][]): number",
+          "lines": 12,
+          "logicalLines": 9,
+          "parameters": 1,
+          "cyclomatic": 4,
+          "cognitive": 7,
+          "maxNesting": 3,
+          "halstead": {
+            "distinctOperators": 8,
+            "distinctOperands": 7,
+            "totalOperators": 10,
+            "totalOperands": 15,
+            "vocabulary": 15,
+            "length": 25,
+            "volume": 97.67226489021297,
+            "difficulty": 8.571428571428571,
+            "effort": 837.1908419161111
+          },
+          "maintainabilityIndex": 61.98836289692856,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/jump-unlabelled-break-continue.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "unlabelledJumps",
+          "line": 1,
+          "column": 7,
+          "signature": "function unlabelledJumps(rows: number[][]): number",
+          "lines": 15,
+          "logicalLines": 11,
+          "parameters": 1,
+          "cyclomatic": 5,
+          "cognitive": 8,
+          "maxNesting": 3,
+          "halstead": {
+            "distinctOperators": 9,
+            "distinctOperands": 7,
+            "totalOperators": 12,
+            "totalOperands": 16,
+            "vocabulary": 16,
+            "length": 28,
+            "volume": 112,
+            "difficulty": 10.285714285714285,
+            "effort": 1152
+          },
+          "maintainabilityIndex": 59.32362141018112,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/label-plain-statement.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "plainLabel",
+          "line": 1,
+          "column": 7,
+          "signature": "function plainLabel(rows: number[]): number",
+          "lines": 7,
+          "logicalLines": 5,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 6,
+            "totalOperators": 5,
+            "totalOperands": 10,
+            "vocabulary": 11,
+            "length": 15,
+            "volume": 51.89147427955946,
+            "difficulty": 4.166666666666667,
+            "effort": 216.2144761648311
+          },
+          "maintainabilityIndex": 69.28693108850561,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-and-repeated.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "allGranted",
+          "line": 1,
+          "column": 7,
+          "signature": "function allGranted(a: boolean, b: boolean, c: boolean): boolean",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 3,
+          "cyclomatic": 3,
+          "cognitive": 1,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 4,
+            "totalOperators": 3,
+            "totalOperands": 7,
+            "vocabulary": 6,
+            "length": 10,
+            "volume": 25.84962500721156,
+            "difficulty": 1.75,
+            "effort": 45.23684376262023
+          },
+          "maintainabilityIndex": 79.29856212451058,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-and-single.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "bothEnabled",
+          "line": 1,
+          "column": 7,
+          "signature": "function bothEnabled(flag: boolean, ready: boolean): boolean",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 5,
+            "vocabulary": 5,
+            "length": 7,
+            "volume": 16.253496664211536,
+            "difficulty": 1.6666666666666667,
+            "effort": 27.089161107019226
+          },
+          "maintainabilityIndex": 80.84402279869201,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-chain-in-call-argument.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "chainAsArgument",
+          "line": 1,
+          "column": 7,
+          "signature": "function chainAsArgument(a: boolean, b: boolean, c: boolean): boolean",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 3,
+          "cyclomatic": 3,
+          "cognitive": 1,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 5,
+            "totalOperators": 3,
+            "totalOperands": 8,
+            "vocabulary": 7,
+            "length": 11,
+            "volume": 30.880904142633646,
+            "difficulty": 1.6,
+            "effort": 49.409446628213836
+          },
+          "maintainabilityIndex": 78.75775631754,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-chain-in-nested-if.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "chainUnderTwoIfs",
+          "line": 1,
+          "column": 7,
+          "signature": "function chainUnderTwoIfs(a: boolean, b: boolean, c: boolean, flag: bool",
+          "lines": 8,
+          "logicalLines": 4,
+          "parameters": 4,
+          "cyclomatic": 4,
+          "cognitive": 4,
+          "maxNesting": 2,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 6,
+            "totalOperators": 5,
+            "totalOperands": 10,
+            "vocabulary": 9,
+            "length": 15,
+            "volume": 47.548875021634686,
+            "difficulty": 2.5,
+            "effort": 118.87218755408671
+          },
+          "maintainabilityIndex": 68.01865774825264,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-mixed-parenthesised.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "mixedParenthesised",
+          "line": 1,
+          "column": 7,
+          "signature": "function mixedParenthesised(a: boolean, b: boolean, c: boolean, d: boole",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 4,
+          "cyclomatic": 4,
+          "cognitive": 3,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 5,
+            "totalOperators": 4,
+            "totalOperands": 9,
+            "vocabulary": 8,
+            "length": 13,
+            "volume": 39,
+            "difficulty": 2.7,
+            "effort": 105.30000000000001
+          },
+          "maintainabilityIndex": 77.91342711327628,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-mixed-tree-order.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "mixedTreeOrder",
+          "line": 1,
+          "column": 7,
+          "signature": "function mixedTreeOrder( a: boolean, b: boolean, c: boolean, d: boolean,",
+          "lines": 9,
+          "logicalLines": 1,
+          "parameters": 5,
+          "cyclomatic": 5,
+          "cognitive": 4,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 6,
+            "totalOperators": 5,
+            "totalOperands": 11,
+            "vocabulary": 9,
+            "length": 16,
+            "volume": 50.718800023076994,
+            "difficulty": 2.75,
+            "effort": 139.47670006346175
+          },
+          "maintainabilityIndex": 66.57205804793168,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-nullish-alone.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "firstDefined",
+          "line": 1,
+          "column": 7,
+          "signature": "function firstDefined(left: number | undefined, right: number): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 5,
+            "vocabulary": 5,
+            "length": 7,
+            "volume": 16.253496664211536,
+            "difficulty": 1.6666666666666667,
+            "effort": 27.089161107019226
+          },
+          "maintainabilityIndex": 80.97852572266862,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-nullish-beside-and.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "nullishLeftOfAnd",
+          "line": 1,
+          "column": 7,
+          "signature": "function nullishLeftOfAnd(left: number | undefined, middle: number, righ",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 3,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 4,
+            "totalOperators": 3,
+            "totalOperands": 7,
+            "vocabulary": 7,
+            "length": 10,
+            "volume": 28.07354922057604,
+            "difficulty": 2.625,
+            "effort": 73.69306670401211
+          },
+          "maintainabilityIndex": 79.18209136723735,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "nullishRightOfAnd",
+          "line": 5,
+          "column": 7,
+          "signature": "function nullishRightOfAnd(left: number, middle: number, right: number):",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 3,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 4,
+            "totalOperators": 3,
+            "totalOperands": 7,
+            "vocabulary": 7,
+            "length": 10,
+            "volume": 28.07354922057604,
+            "difficulty": 2.625,
+            "effort": 73.69306670401211
+          },
+          "maintainabilityIndex": 79.18209136723735,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-or-repeated.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "anyGranted",
+          "line": 1,
+          "column": 7,
+          "signature": "function anyGranted(a: boolean, b: boolean, c: boolean): boolean",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 3,
+          "cyclomatic": 3,
+          "cognitive": 1,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 4,
+            "totalOperators": 3,
+            "totalOperands": 7,
+            "vocabulary": 6,
+            "length": 10,
+            "volume": 25.84962500721156,
+            "difficulty": 1.75,
+            "effort": 45.23684376262023
+          },
+          "maintainabilityIndex": 79.29856212451058,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-or-single.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "eitherEnabled",
+          "line": 1,
+          "column": 7,
+          "signature": "function eitherEnabled(flag: boolean, fallback: boolean): boolean",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 5,
+            "vocabulary": 5,
+            "length": 7,
+            "volume": 16.253496664211536,
+            "difficulty": 1.6666666666666667,
+            "effort": 27.089161107019226
+          },
+          "maintainabilityIndex": 80.84402279869201,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/logical-two-separate-chains.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "twoSeparateChains",
+          "line": 1,
+          "column": 7,
+          "signature": "function twoSeparateChains(a: boolean, b: boolean, c: boolean, d: boolea",
+          "lines": 4,
+          "logicalLines": 2,
+          "parameters": 4,
+          "cyclomatic": 3,
+          "cognitive": 2,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 6,
+            "totalOperators": 2,
+            "totalOperands": 11,
+            "vocabulary": 8,
+            "length": 13,
+            "volume": 39,
+            "difficulty": 1.8333333333333333,
+            "effort": 71.5
+          },
+          "maintainabilityIndex": 75.32252092981497,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/nested-arrow-decisions-isolated.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "outerWithNestedArrow",
+          "line": 1,
+          "column": 7,
+          "signature": "function outerWithNestedArrow(source: number[]): number",
+          "lines": 16,
+          "logicalLines": 6,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 6,
+            "totalOperators": 4,
+            "totalOperands": 11,
+            "vocabulary": 10,
+            "length": 15,
+            "volume": 49.82892142331043,
+            "difficulty": 3.6666666666666665,
+            "effort": 182.70604521880492
+          },
+          "maintainabilityIndex": 61.57857646296492,
+          "recursive": false
+        },
+        {
+          "kind": "arrow",
+          "name": "visit",
+          "line": 3,
+          "column": 16,
+          "signature": "(value: number): number =>",
+          "lines": 9,
+          "logicalLines": 5,
+          "parameters": 1,
+          "cyclomatic": 4,
+          "cognitive": 3,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 7,
+            "distinctOperands": 3,
+            "totalOperators": 11,
+            "totalOperands": 10,
+            "vocabulary": 10,
+            "length": 21,
+            "volume": 69.7604899926346,
+            "difficulty": 11.666666666666668,
+            "effort": 813.8723832474038
+          },
+          "maintainabilityIndex": 65.73719840273533,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/nested-function-declaration-isolated.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "outerWithNestedFunction",
+          "line": 1,
+          "column": 7,
+          "signature": "function outerWithNestedFunction(flag: boolean): number",
+          "lines": 9,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 5,
+            "totalOperators": 2,
+            "totalOperands": 6,
+            "vocabulary": 7,
+            "length": 8,
+            "volume": 22.458839376460833,
+            "difficulty": 1.2,
+            "effort": 26.950607251753
+          },
+          "maintainabilityIndex": 69.5872535838517,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "helper",
+          "line": 2,
+          "column": 2,
+          "signature": "function helper(value: number): number",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 3,
+          "cognitive": 2,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 4,
+            "totalOperators": 5,
+            "totalOperands": 7,
+            "vocabulary": 8,
+            "length": 12,
+            "volume": 36,
+            "difficulty": 3.5,
+            "effort": 126
+          },
+          "maintainabilityIndex": 71.72467726230043,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/nesting-catch-ladder.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "nestedCatch",
+          "line": 1,
+          "column": 7,
+          "signature": "function nestedCatch(source: number[]): number",
+          "lines": 19,
+          "logicalLines": 11,
+          "parameters": 1,
+          "cyclomatic": 4,
+          "cognitive": 3,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 6,
+            "totalOperators": 10,
+            "totalOperands": 20,
+            "vocabulary": 10,
+            "length": 30,
+            "volume": 99.65784284662087,
+            "difficulty": 6.666666666666667,
+            "effort": 664.3856189774725
+          },
+          "maintainabilityIndex": 57.57369956172306,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/nesting-if-ladder.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "oneIf",
+          "line": 1,
+          "column": 7,
+          "signature": "function oneIf(flag: boolean): number",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 4,
+            "totalOperators": 3,
+            "totalOperands": 5,
+            "vocabulary": 6,
+            "length": 8,
+            "volume": 20.67970000576925,
+            "difficulty": 1.25,
+            "effort": 25.84962500721156
+          },
+          "maintainabilityIndex": 73.54497273372857,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "twoIfs",
+          "line": 8,
+          "column": 7,
+          "signature": "function twoIfs(flag: boolean, other: boolean): number",
+          "lines": 8,
+          "logicalLines": 4,
+          "parameters": 2,
+          "cyclomatic": 3,
+          "cognitive": 3,
+          "maxNesting": 2,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 5,
+            "totalOperators": 4,
+            "totalOperands": 7,
+            "vocabulary": 7,
+            "length": 11,
+            "volume": 30.880904142633646,
+            "difficulty": 1.4,
+            "effort": 43.2332657996871
+          },
+          "maintainabilityIndex": 69.4656897100605,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "threeIfs",
+          "line": 17,
+          "column": 7,
+          "signature": "function threeIfs(flag: boolean, other: boolean, third: boolean): number",
+          "lines": 10,
+          "logicalLines": 5,
+          "parameters": 3,
+          "cyclomatic": 4,
+          "cognitive": 6,
+          "maxNesting": 3,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 6,
+            "totalOperators": 5,
+            "totalOperands": 9,
+            "vocabulary": 8,
+            "length": 14,
+            "volume": 42,
+            "difficulty": 1.5,
+            "effort": 63
+          },
+          "maintainabilityIndex": 66.28201139089062,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "fourIfs",
+          "line": 28,
+          "column": 7,
+          "signature": "function fourIfs(flag: boolean, other: boolean, third: boolean, fourth: ",
+          "lines": 12,
+          "logicalLines": 6,
+          "parameters": 4,
+          "cyclomatic": 5,
+          "cognitive": 10,
+          "maxNesting": 4,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 7,
+            "totalOperators": 6,
+            "totalOperands": 11,
+            "vocabulary": 9,
+            "length": 17,
+            "volume": 53.8887250245193,
+            "difficulty": 1.5714285714285714,
+            "effort": 84.68228218138748
+          },
+          "maintainabilityIndex": 63.66229336537945,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/nesting-loop-ladder.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "forOfInsideForOf",
+          "line": 1,
+          "column": 7,
+          "signature": "function forOfInsideForOf(source: number[]): number",
+          "lines": 11,
+          "logicalLines": 9,
+          "parameters": 1,
+          "cyclomatic": 4,
+          "cognitive": 6,
+          "maxNesting": 3,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 7,
+            "totalOperators": 10,
+            "totalOperands": 15,
+            "vocabulary": 12,
+            "length": 25,
+            "volume": 89.62406251802891,
+            "difficulty": 5.357142857142857,
+            "effort": 480.1289063465834
+          },
+          "maintainabilityIndex": 63.07418281802773,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "whileInsideWhile",
+          "line": 13,
+          "column": 7,
+          "signature": "function whileInsideWhile(limit: number): number",
+          "lines": 17,
+          "logicalLines": 12,
+          "parameters": 1,
+          "cyclomatic": 4,
+          "cognitive": 6,
+          "maxNesting": 3,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 8,
+            "totalOperators": 11,
+            "totalOperands": 25,
+            "vocabulary": 12,
+            "length": 36,
+            "volume": 129.0586500259616,
+            "difficulty": 6.25,
+            "effort": 806.6165626622601
+          },
+          "maintainabilityIndex": 57.841260627949225,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "doWhileInsideDoWhile",
+          "line": 31,
+          "column": 7,
+          "signature": "function doWhileInsideDoWhile(limit: number): number",
+          "lines": 13,
+          "logicalLines": 9,
+          "parameters": 1,
+          "cyclomatic": 3,
+          "cognitive": 3,
+          "maxNesting": 2,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 7,
+            "totalOperators": 10,
+            "totalOperands": 19,
+            "vocabulary": 12,
+            "length": 29,
+            "volume": 103.96391252091352,
+            "difficulty": 6.7857142857142865,
+            "effort": 705.4694063919133
+          },
+          "maintainabilityIndex": 61.174732409748,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "forInInsideForIn",
+          "line": 45,
+          "column": 7,
+          "signature": "function forInInsideForIn(record: Record<string, number>): number",
+          "lines": 9,
+          "logicalLines": 7,
+          "parameters": 1,
+          "cyclomatic": 3,
+          "cognitive": 3,
+          "maxNesting": 2,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 7,
+            "totalOperators": 7,
+            "totalOperands": 14,
+            "vocabulary": 12,
+            "length": 21,
+            "volume": 75.28421251514428,
+            "difficulty": 5,
+            "effort": 376.4210625757214
+          },
+          "maintainabilityIndex": 65.63997397571175,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/nesting-switch-ladder.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "switchInsideSwitch",
+          "line": 1,
+          "column": 7,
+          "signature": "function switchInsideSwitch(value: number): number",
+          "lines": 29,
+          "logicalLines": 18,
+          "parameters": 1,
+          "cyclomatic": 4,
+          "cognitive": 6,
+          "maxNesting": 3,
+          "halstead": {
+            "distinctOperators": 6,
+            "distinctOperands": 7,
+            "totalOperators": 20,
+            "totalOperands": 19,
+            "vocabulary": 13,
+            "length": 39,
+            "volume": 144.3171490075026,
+            "difficulty": 8.142857142857142,
+            "effort": 1175.1539276325211
+          },
+          "maintainabilityIndex": 52.441718354754464,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/nesting-ternary-ladder.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "ternaryInConsequent",
+          "line": 1,
+          "column": 7,
+          "signature": "function ternaryInConsequent(a: number, b: number): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 4,
+          "cognitive": 6,
+          "maxNesting": 3,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 8,
+            "totalOperators": 10,
+            "totalOperands": 13,
+            "vocabulary": 12,
+            "length": 23,
+            "volume": 82.45413751658658,
+            "difficulty": 3.25,
+            "effort": 267.9759469289064
+          },
+          "maintainabilityIndex": 75.63673761884252,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "ternaryInAlternate",
+          "line": 5,
+          "column": 7,
+          "signature": "function ternaryInAlternate(a: number, b: number): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 4,
+          "cognitive": 6,
+          "maxNesting": 3,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 8,
+            "totalOperators": 10,
+            "totalOperands": 13,
+            "vocabulary": 12,
+            "length": 23,
+            "volume": 82.45413751658658,
+            "difficulty": 3.25,
+            "effort": 267.9759469289064
+          },
+          "maintainabilityIndex": 75.63673761884252,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/object-literal-members.ts": {
+      "functions": [
+        {
+          "kind": "anonymous",
+          "name": null,
+          "line": 7,
+          "column": 8,
+          "signature": "(): number",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 0,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 3,
+            "totalOperands": 3,
+            "vocabulary": 5,
+            "length": 6,
+            "volume": 13.931568569324174,
+            "difficulty": 1,
+            "effort": 13.931568569324174
+          },
+          "maintainabilityIndex": 74.74612759987951,
+          "recursive": false
+        },
+        {
+          "kind": "getter",
+          "name": "computed",
+          "line": 13,
+          "column": 2,
+          "signature": "get computed(): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 2,
+            "totalOperators": 1,
+            "totalOperands": 2,
+            "vocabulary": 3,
+            "length": 3,
+            "volume": 4.754887502163468,
+            "difficulty": 0.5,
+            "effort": 2.377443751081734
+          },
+          "maintainabilityIndex": 84.71624627594792,
+          "recursive": false
+        },
+        {
+          "kind": "setter",
+          "name": "computed",
+          "line": 16,
+          "column": 2,
+          "signature": "set computed(value: number)",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 3,
+            "totalOperators": 1,
+            "totalOperands": 4,
+            "vocabulary": 4,
+            "length": 5,
+            "volume": 10,
+            "difficulty": 0.6666666666666666,
+            "effort": 6.666666666666666
+          },
+          "maintainabilityIndex": 82.45557803509216,
+          "recursive": false
+        },
+        {
+          "kind": "arrow",
+          "name": "arrow",
+          "line": 19,
+          "column": 2,
+          "signature": "arrow: (value: number): number =>",
+          "lines": 1,
+          "logicalLines": 0,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 3,
+            "totalOperators": 3,
+            "totalOperands": 4,
+            "vocabulary": 6,
+            "length": 7,
+            "volume": 18.094737505048094,
+            "difficulty": 2,
+            "effort": 36.18947501009619
+          },
+          "maintainabilityIndex": 91.0600994256245,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/operator-assignment-update-binary.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "assignmentFamily",
+          "line": 1,
+          "column": 7,
+          "signature": "function assignmentFamily(target: { value: number }, other: number): num",
+          "lines": 9,
+          "logicalLines": 7,
+          "parameters": 2,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 9,
+            "distinctOperands": 8,
+            "totalOperators": 9,
+            "totalOperands": 24,
+            "vocabulary": 17,
+            "length": 33,
+            "volume": 134.88627376126118,
+            "difficulty": 13.5,
+            "effort": 1820.964695777026
+          },
+          "maintainabilityIndex": 64.00112012378598,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/operator-await-and-for-await.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "awaiting",
+          "line": 1,
+          "column": 7,
+          "signature": "async function awaiting(source: Promise<number>): Promise<number>",
+          "lines": 4,
+          "logicalLines": 2,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 5,
+            "vocabulary": 5,
+            "length": 7,
+            "volume": 16.253496664211536,
+            "difficulty": 1.6666666666666667,
+            "effort": 27.089161107019226
+          },
+          "maintainabilityIndex": 78.25311661523071,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "iterating",
+          "line": 6,
+          "column": 7,
+          "signature": "async function iterating(source: AsyncIterable<number>): Promise<number>",
+          "lines": 7,
+          "logicalLines": 5,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 5,
+            "totalOperators": 5,
+            "totalOperands": 9,
+            "vocabulary": 10,
+            "length": 14,
+            "volume": 46.50699332842307,
+            "difficulty": 4.5,
+            "effort": 209.2814699779038
+          },
+          "maintainabilityIndex": 69.62007109297693,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/operator-new-and-meta-properties.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "constructing",
+          "line": 1,
+          "column": 7,
+          "signature": "function constructing(): Date",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 2,
+            "totalOperators": 2,
+            "totalOperands": 2,
+            "vocabulary": 4,
+            "length": 4,
+            "volume": 8,
+            "difficulty": 1,
+            "effort": 8
+          },
+          "maintainabilityIndex": 83.13414322037512,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "newTarget",
+          "line": 5,
+          "column": 7,
+          "signature": "function newTarget(): boolean",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 4,
+            "totalOperators": 3,
+            "totalOperands": 4,
+            "vocabulary": 7,
+            "length": 7,
+            "volume": 19.651484454403228,
+            "difficulty": 1.5,
+            "effort": 29.47722668160484
+          },
+          "maintainabilityIndex": 80.40121985172942,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "moduleUrl",
+          "line": 9,
+          "column": 7,
+          "signature": "function moduleUrl(): string",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 4,
+            "totalOperators": 1,
+            "totalOperands": 4,
+            "vocabulary": 5,
+            "length": 5,
+            "volume": 11.60964047443681,
+            "difficulty": 0.5,
+            "effort": 5.804820237218405
+          },
+          "maintainabilityIndex": 82.00171614982087,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/operator-non-null-assertion.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "asserted",
+          "line": 1,
+          "column": 7,
+          "signature": "function asserted(input: string | undefined): string",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 5,
+            "totalOperators": 6,
+            "totalOperands": 7,
+            "vocabulary": 10,
+            "length": 13,
+            "volume": 43.18506523353571,
+            "difficulty": 3.5,
+            "effort": 151.14772831737497
+          },
+          "maintainabilityIndex": 77.87246103067987,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/optional-chain-call.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "callOptional",
+          "line": 1,
+          "column": 7,
+          "signature": "function callOptional(handler: (() => number) | undefined): number | und",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 2,
+            "totalOperators": 2,
+            "totalOperands": 3,
+            "vocabulary": 4,
+            "length": 5,
+            "volume": 10,
+            "difficulty": 1.5,
+            "effort": 15
+          },
+          "maintainabilityIndex": 82.45557803509216,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/optional-chain-member.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "readNested",
+          "line": 1,
+          "column": 7,
+          "signature": "function readNested(input: { inner?: { value?: number } }): number | und",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 4,
+            "totalOperators": 3,
+            "totalOperands": 5,
+            "vocabulary": 6,
+            "length": 8,
+            "volume": 20.67970000576925,
+            "difficulty": 1.25,
+            "effort": 25.84962500721156
+          },
+          "maintainabilityIndex": 80.24613315774677,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/optional-chain-plain-member-control.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "readPlain",
+          "line": 1,
+          "column": 7,
+          "signature": "function readPlain(input: { inner: { value: number } }): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 4,
+            "totalOperators": 1,
+            "totalOperands": 5,
+            "vocabulary": 5,
+            "length": 6,
+            "volume": 13.931568569324174,
+            "difficulty": 0.625,
+            "effort": 8.707230355827608
+          },
+          "maintainabilityIndex": 81.44728802389771,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "readOptional",
+          "line": 5,
+          "column": 7,
+          "signature": "function readOptional(input: { inner?: { value: number } }): number | un",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 4,
+            "totalOperators": 3,
+            "totalOperands": 5,
+            "vocabulary": 6,
+            "length": 8,
+            "volume": 20.67970000576925,
+            "difficulty": 1.25,
+            "effort": 25.84962500721156
+          },
+          "maintainabilityIndex": 80.24613315774677,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/parameters-arrow-destructured.ts": {
+      "functions": [
+        {
+          "kind": "arrow",
+          "name": "total",
+          "line": 1,
+          "column": 21,
+          "signature": "({ a, b }: { a: number; b: number }, factor: number): number =>",
+          "lines": 2,
+          "logicalLines": 0,
+          "parameters": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 3,
+            "totalOperators": 3,
+            "totalOperands": 8,
+            "vocabulary": 6,
+            "length": 11,
+            "volume": 28.43458750793272,
+            "difficulty": 4,
+            "effort": 113.73835003173087
+          },
+          "maintainabilityIndex": 83.11898423934672,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/parameters-default-rest-and-array.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "withDefaultValue",
+          "line": 1,
+          "column": 7,
+          "signature": "function withDefaultValue(value: number, fallback: number = 0): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 4,
+            "totalOperators": 3,
+            "totalOperands": 6,
+            "vocabulary": 7,
+            "length": 9,
+            "volume": 25.26619429851844,
+            "difficulty": 2.25,
+            "effort": 56.848937171666485
+          },
+          "maintainabilityIndex": 79.6369888417524,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "withRest",
+          "line": 5,
+          "column": 7,
+          "signature": "function withRest(first: number, ...rest: number[]): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 4,
+            "totalOperators": 2,
+            "totalOperands": 6,
+            "vocabulary": 6,
+            "length": 8,
+            "volume": 20.67970000576925,
+            "difficulty": 1.5,
+            "effort": 31.019550008653873
+          },
+          "maintainabilityIndex": 80.24613315774677,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "fromArray",
+          "line": 9,
+          "column": 7,
+          "signature": "function fromArray([first, second]: number[]): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 5,
+            "vocabulary": 5,
+            "length": 7,
+            "volume": 16.253496664211536,
+            "difficulty": 1.6666666666666667,
+            "effort": 27.089161107019226
+          },
+          "maintainabilityIndex": 80.97852572266862,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/parameters-destructured-object.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "fromObject",
+          "line": 1,
+          "column": 7,
+          "signature": "function fromObject({ a, b }: { a: number; b: number }): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 7,
+            "vocabulary": 5,
+            "length": 9,
+            "volume": 20.89735285398626,
+            "difficulty": 2.3333333333333335,
+            "effort": 48.76048999263461
+          },
+          "maintainabilityIndex": 80.2142947126916,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "withDefault",
+          "line": 5,
+          "column": 7,
+          "signature": "function withDefault({ a, b } = { a: 0, b: 0 }): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 4,
+            "totalOperators": 5,
+            "totalOperands": 11,
+            "vocabulary": 8,
+            "length": 16,
+            "volume": 48,
+            "difficulty": 5.5,
+            "effort": 264
+          },
+          "maintainabilityIndex": 77.68551793383368,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/property-colon-initialiser-vs-shorthand.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "keyedProperty",
+          "line": 3,
+          "column": 7,
+          "signature": "function keyedProperty(): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 4,
+            "vocabulary": 5,
+            "length": 6,
+            "volume": 13.931568569324174,
+            "difficulty": 1.3333333333333333,
+            "effort": 18.575424759098897
+          },
+          "maintainabilityIndex": 81.44728802389771,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "shorthandProperty",
+          "line": 7,
+          "column": 7,
+          "signature": "function shorthandProperty(): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 2,
+            "totalOperators": 1,
+            "totalOperands": 4,
+            "vocabulary": 3,
+            "length": 5,
+            "volume": 7.92481250360578,
+            "difficulty": 1,
+            "effort": 7.92481250360578
+          },
+          "maintainabilityIndex": 83.1628584142034,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "twoKeyedProperties",
+          "line": 11,
+          "column": 7,
+          "signature": "function twoKeyedProperties(): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 5,
+            "totalOperators": 3,
+            "totalOperands": 6,
+            "vocabulary": 7,
+            "length": 9,
+            "volume": 25.26619429851844,
+            "difficulty": 1.2,
+            "effort": 30.319433158222125
+          },
+          "maintainabilityIndex": 79.6369888417524,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/property-colon-method-shorthand.ts": {
+      "functions": [
+        {
+          "kind": "anonymous",
+          "name": null,
+          "line": 2,
+          "column": 6,
+          "signature": "(): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 1,
+            "totalOperators": 1,
+            "totalOperands": 1,
+            "vocabulary": 2,
+            "length": 2,
+            "volume": 2,
+            "difficulty": 0.5,
+            "effort": 1
+          },
+          "maintainabilityIndex": 87.34977519571046,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "methodInFunction",
+          "line": 7,
+          "column": 7,
+          "signature": "function methodInFunction(): number",
+          "lines": 8,
+          "logicalLines": 2,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 5,
+            "vocabulary": 5,
+            "length": 7,
+            "volume": 16.253496664211536,
+            "difficulty": 1.6666666666666667,
+            "effort": 27.089161107019226
+          },
+          "maintainabilityIndex": 71.68645911518914,
+          "recursive": false
+        },
+        {
+          "kind": "anonymous",
+          "name": null,
+          "line": 9,
+          "column": 8,
+          "signature": "(): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 1,
+            "totalOperators": 1,
+            "totalOperands": 1,
+            "vocabulary": 2,
+            "length": 2,
+            "volume": 2,
+            "difficulty": 0.5,
+            "effort": 1
+          },
+          "maintainabilityIndex": 87.34977519571046,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/recursion-bare-name.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "factorial",
+          "line": 1,
+          "column": 7,
+          "signature": "function factorial(value: number): number",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 2,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 3,
+            "totalOperators": 6,
+            "totalOperands": 9,
+            "vocabulary": 8,
+            "length": 15,
+            "volume": 45,
+            "difficulty": 7.5,
+            "effort": 337.5
+          },
+          "maintainabilityIndex": 71.18061500099407,
+          "recursive": true
+        }
+      ]
+    },
+    "test/fixtures/metrics/recursion-charged-once.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "twiceRecursive",
+          "line": 1,
+          "column": 7,
+          "signature": "function twiceRecursive(value: number): number",
+          "lines": 9,
+          "logicalLines": 5,
+          "parameters": 1,
+          "cyclomatic": 3,
+          "cognitive": 3,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 6,
+            "distinctOperands": 5,
+            "totalOperators": 11,
+            "totalOperands": 16,
+            "vocabulary": 11,
+            "length": 27,
+            "volume": 93.40465370320703,
+            "difficulty": 9.600000000000001,
+            "effort": 896.6846755507877
+          },
+          "maintainabilityIndex": 64.98413319631749,
+          "recursive": true
+        }
+      ]
+    },
+    "test/fixtures/metrics/recursion-indirect-not-detected.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "isEven",
+          "line": 1,
+          "column": 7,
+          "signature": "function isEven(value: number): boolean",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 6,
+            "totalOperators": 5,
+            "totalOperands": 8,
+            "vocabulary": 10,
+            "length": 13,
+            "volume": 43.18506523353571,
+            "difficulty": 2.6666666666666665,
+            "effort": 115.16017395609522
+          },
+          "maintainabilityIndex": 71.30580353063829,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "isOdd",
+          "line": 8,
+          "column": 7,
+          "signature": "function isOdd(value: number): boolean",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 6,
+            "totalOperators": 5,
+            "totalOperands": 8,
+            "vocabulary": 10,
+            "length": 13,
+            "volume": 43.18506523353571,
+            "difficulty": 2.6666666666666665,
+            "effort": 115.16017395609522
+          },
+          "maintainabilityIndex": 71.30580353063829,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/recursion-other-receiver-not-self.ts": {
+      "functions": [
+        {
+          "kind": "method",
+          "name": "step",
+          "line": 2,
+          "column": 2,
+          "signature": "step(value: number, helper: { step: (value: number) => number }): number",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 2,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 5,
+            "totalOperators": 6,
+            "totalOperands": 11,
+            "vocabulary": 10,
+            "length": 17,
+            "volume": 56.47277761308516,
+            "difficulty": 5.5,
+            "effort": 310.6002768719684
+          },
+          "maintainabilityIndex": 70.49003000415155,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/recursion-super-not-self.ts": {
+      "functions": [
+        {
+          "kind": "method",
+          "name": "step",
+          "line": 2,
+          "column": 2,
+          "signature": "step(value: number): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 2,
+            "totalOperators": 1,
+            "totalOperands": 3,
+            "vocabulary": 3,
+            "length": 4,
+            "volume": 6.339850002884624,
+            "difficulty": 0.75,
+            "effort": 4.754887502163468
+          },
+          "maintainabilityIndex": 83.84142359948639,
+          "recursive": false
+        },
+        {
+          "kind": "method",
+          "name": "step",
+          "line": 8,
+          "column": 2,
+          "signature": "step(value: number): number",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 5,
+            "totalOperators": 6,
+            "totalOperands": 10,
+            "vocabulary": 10,
+            "length": 16,
+            "volume": 53.150849518197795,
+            "difficulty": 5,
+            "effort": 265.754247590989
+          },
+          "maintainabilityIndex": 70.67438557926586,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/recursion-this-member.ts": {
+      "functions": [
+        {
+          "kind": "method",
+          "name": "step",
+          "line": 2,
+          "column": 2,
+          "signature": "step(value: number): number",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 2,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 5,
+            "totalOperators": 6,
+            "totalOperands": 10,
+            "vocabulary": 10,
+            "length": 16,
+            "volume": 53.150849518197795,
+            "difficulty": 5,
+            "effort": 265.754247590989
+          },
+          "maintainabilityIndex": 70.67438557926586,
+          "recursive": true
+        }
+      ]
+    },
+    "test/fixtures/metrics/signature-abstract-method.ts": {
+      "functions": [
+        {
+          "kind": "method",
+          "name": "run",
+          "line": 2,
+          "column": 2,
+          "signature": "abstract run(input: string): Promise<void>;",
+          "lines": 0,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 0,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 0,
+            "distinctOperands": 0,
+            "totalOperators": 0,
+            "totalOperands": 0,
+            "vocabulary": 0,
+            "length": 0,
+            "volume": 0,
+            "difficulty": 0,
+            "effort": 0
+          },
+          "maintainabilityIndex": 0,
+          "recursive": false
+        },
+        {
+          "kind": "method",
+          "name": "concrete",
+          "line": 4,
+          "column": 2,
+          "signature": "concrete(input: string): Promise<void>",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 9,
+            "totalOperators": 5,
+            "totalOperands": 11,
+            "vocabulary": 13,
+            "length": 16,
+            "volume": 59.207035490257475,
+            "difficulty": 2.4444444444444446,
+            "effort": 144.72830897618496
+          },
+          "maintainabilityIndex": 70.34624949423613,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/signature-ambient-class.ts": {
+      "functions": [
+        {
+          "kind": "method",
+          "name": "method",
+          "line": 2,
+          "column": 2,
+          "signature": "method(input: string): number;",
+          "lines": 0,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 0,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 0,
+            "distinctOperands": 0,
+            "totalOperators": 0,
+            "totalOperands": 0,
+            "vocabulary": 0,
+            "length": 0,
+            "volume": 0,
+            "difficulty": 0,
+            "effort": 0
+          },
+          "maintainabilityIndex": 0,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/signature-ambient-overload.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "ambient",
+          "line": 1,
+          "column": 0,
+          "signature": "declare function ambient(value: string): string;",
+          "lines": 0,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 0,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 0,
+            "distinctOperands": 0,
+            "totalOperators": 0,
+            "totalOperands": 0,
+            "vocabulary": 0,
+            "length": 0,
+            "volume": 0,
+            "difficulty": 0,
+            "effort": 0
+          },
+          "maintainabilityIndex": 0,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "ambient",
+          "line": 2,
+          "column": 0,
+          "signature": "declare function ambient(value: number): number;",
+          "lines": 0,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 0,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 0,
+            "distinctOperands": 0,
+            "totalOperators": 0,
+            "totalOperands": 0,
+            "vocabulary": 0,
+            "length": 0,
+            "volume": 0,
+            "difficulty": 0,
+            "effort": 0
+          },
+          "maintainabilityIndex": 0,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/signature-declare-function.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "parse",
+          "line": 1,
+          "column": 7,
+          "signature": "declare function parse(input: string): number;",
+          "lines": 0,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 0,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 0,
+            "distinctOperands": 0,
+            "totalOperators": 0,
+            "totalOperands": 0,
+            "vocabulary": 0,
+            "length": 0,
+            "volume": 0,
+            "difficulty": 0,
+            "effort": 0
+          },
+          "maintainabilityIndex": 0,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "unexported",
+          "line": 3,
+          "column": 0,
+          "signature": "declare function unexported(input: string): number;",
+          "lines": 0,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 0,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 0,
+            "distinctOperands": 0,
+            "totalOperators": 0,
+            "totalOperands": 0,
+            "vocabulary": 0,
+            "length": 0,
+            "volume": 0,
+            "difficulty": 0,
+            "effort": 0
+          },
+          "maintainabilityIndex": 0,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/signature-overload-implementation.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "overloaded",
+          "line": 1,
+          "column": 7,
+          "signature": "function overloaded(value: string): string;",
+          "lines": 0,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 0,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 0,
+            "distinctOperands": 0,
+            "totalOperators": 0,
+            "totalOperands": 0,
+            "vocabulary": 0,
+            "length": 0,
+            "volume": 0,
+            "difficulty": 0,
+            "effort": 0
+          },
+          "maintainabilityIndex": 0,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "overloaded",
+          "line": 2,
+          "column": 7,
+          "signature": "function overloaded(value: number): number;",
+          "lines": 0,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 0,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 0,
+            "distinctOperands": 0,
+            "totalOperators": 0,
+            "totalOperands": 0,
+            "vocabulary": 0,
+            "length": 0,
+            "volume": 0,
+            "difficulty": 0,
+            "effort": 0
+          },
+          "maintainabilityIndex": 0,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "overloaded",
+          "line": 3,
+          "column": 7,
+          "signature": "function overloaded(value: string | number): string | number",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 3,
+            "totalOperators": 5,
+            "totalOperands": 6,
+            "vocabulary": 7,
+            "length": 11,
+            "volume": 30.880904142633646,
+            "difficulty": 4,
+            "effort": 123.52361657053459
+          },
+          "maintainabilityIndex": 72.32560174147501,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/switch-with-default.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "withDefault",
+          "line": 1,
+          "column": 7,
+          "signature": "function withDefault(value: number): string",
+          "lines": 10,
+          "logicalLines": 7,
+          "parameters": 1,
+          "cyclomatic": 3,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 7,
+            "totalOperators": 9,
+            "totalOperands": 8,
+            "vocabulary": 11,
+            "length": 17,
+            "volume": 58.81033751683405,
+            "difficulty": 2.2857142857142856,
+            "effort": 134.4236286099064
+          },
+          "maintainabilityIndex": 65.3927893135534,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/switch-without-default.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "withoutDefault",
+          "line": 1,
+          "column": 7,
+          "signature": "function withoutDefault(value: number): string",
+          "lines": 9,
+          "logicalLines": 6,
+          "parameters": 1,
+          "cyclomatic": 3,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 7,
+            "totalOperators": 8,
+            "totalOperands": 8,
+            "vocabulary": 11,
+            "length": 16,
+            "volume": 55.35090589819676,
+            "difficulty": 2.2857142857142856,
+            "effort": 126.51635633873543
+          },
+          "maintainabilityIndex": 66.57529714226816,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/template-interpolated-expression.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "interpolated",
+          "line": 1,
+          "column": 7,
+          "signature": "function interpolated(flag: boolean, count: number): string",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 7,
+            "totalOperators": 3,
+            "totalOperands": 10,
+            "vocabulary": 10,
+            "length": 13,
+            "volume": 43.18506523353571,
+            "difficulty": 2.142857142857143,
+            "effort": 92.53942550043367
+          },
+          "maintainabilityIndex": 77.87246103067987,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/template-operators-as-text.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "messageWithOperators",
+          "line": 1,
+          "column": 7,
+          "signature": "function messageWithOperators(a: boolean, b: boolean): string",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 5,
+            "totalOperators": 2,
+            "totalOperands": 7,
+            "vocabulary": 7,
+            "length": 9,
+            "volume": 25.26619429851844,
+            "difficulty": 1.4,
+            "effort": 35.372672017925815
+          },
+          "maintainabilityIndex": 79.50248591777577,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "twoQuasis",
+          "line": 5,
+          "column": 7,
+          "signature": "function twoQuasis(a: number): string",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 5,
+            "totalOperators": 1,
+            "totalOperands": 7,
+            "vocabulary": 6,
+            "length": 8,
+            "volume": 20.67970000576925,
+            "difficulty": 0.7,
+            "effort": 14.475790004038473
+          },
+          "maintainabilityIndex": 80.24613315774677,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/template-tagged.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "tagged",
+          "line": 1,
+          "column": 7,
+          "signature": "function tagged(label: string, value: number): string",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 7,
+            "totalOperators": 1,
+            "totalOperands": 10,
+            "vocabulary": 8,
+            "length": 11,
+            "volume": 33,
+            "difficulty": 0.7142857142857143,
+            "effort": 23.571428571428573
+          },
+          "maintainabilityIndex": 78.82493661049762,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/ternary-chained-alternate.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "ternaryChainAlternate",
+          "line": 1,
+          "column": 7,
+          "signature": "function ternaryChainAlternate(a: number, b: number, c: number): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 3,
+          "cyclomatic": 4,
+          "cognitive": 6,
+          "maxNesting": 3,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 8,
+            "totalOperators": 10,
+            "totalOperands": 14,
+            "vocabulary": 12,
+            "length": 24,
+            "volume": 86.03910001730775,
+            "difficulty": 3.5,
+            "effort": 301.1368500605771
+          },
+          "maintainabilityIndex": 75.50731656914793,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/ternary-chained-consequent.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "ternaryChainConsequent",
+          "line": 1,
+          "column": 7,
+          "signature": "function ternaryChainConsequent(a: number, b: number): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 2,
+          "cyclomatic": 3,
+          "cognitive": 3,
+          "maxNesting": 2,
+          "halstead": {
+            "distinctOperators": 4,
+            "distinctOperands": 6,
+            "totalOperators": 7,
+            "totalOperands": 10,
+            "vocabulary": 10,
+            "length": 17,
+            "volume": 56.47277761308516,
+            "difficulty": 3.3333333333333335,
+            "effort": 188.2425920436172
+          },
+          "maintainabilityIndex": 76.92218458021652,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/throw-statement.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "throwing",
+          "line": 1,
+          "column": 7,
+          "signature": "function throwing(value: number): number",
+          "lines": 6,
+          "logicalLines": 3,
+          "parameters": 1,
+          "cyclomatic": 3,
+          "cognitive": 1,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 5,
+            "totalOperators": 5,
+            "totalOperands": 7,
+            "vocabulary": 10,
+            "length": 12,
+            "volume": 39.86313713864835,
+            "difficulty": 3.5,
+            "effort": 139.5209799852692
+          },
+          "maintainabilityIndex": 71.41470533175081,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/try-does-not-nest-catch-does.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "tryIsNotStructural",
+          "line": 1,
+          "column": 7,
+          "signature": "function tryIsNotStructural(candidate: number): number",
+          "lines": 12,
+          "logicalLines": 6,
+          "parameters": 1,
+          "cyclomatic": 4,
+          "cognitive": 4,
+          "maxNesting": 2,
+          "halstead": {
+            "distinctOperators": 6,
+            "distinctOperands": 4,
+            "totalOperators": 9,
+            "totalOperands": 9,
+            "vocabulary": 10,
+            "length": 18,
+            "volume": 59.79470570797252,
+            "difficulty": 6.75,
+            "effort": 403.6142635288145
+          },
+          "maintainabilityIndex": 63.48055159652652,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "finallyIsNotStructural",
+          "line": 14,
+          "column": 7,
+          "signature": "function finallyIsNotStructural(candidate: number): number",
+          "lines": 12,
+          "logicalLines": 5,
+          "parameters": 1,
+          "cyclomatic": 3,
+          "cognitive": 2,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 5,
+            "distinctOperands": 4,
+            "totalOperators": 8,
+            "totalOperands": 9,
+            "vocabulary": 9,
+            "length": 17,
+            "volume": 53.8887250245193,
+            "difficulty": 5.625,
+            "effort": 303.1240782629211
+          },
+          "maintainabilityIndex": 63.931299213332665,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/tsx-generic-arrow.tsx": {
+      "functions": [
+        {
+          "kind": "arrow",
+          "name": "identity",
+          "line": 1,
+          "column": 24,
+          "signature": "<T,>(value: T): T =>",
+          "lines": 1,
+          "logicalLines": 0,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 1,
+            "totalOperators": 1,
+            "totalOperands": 2,
+            "vocabulary": 2,
+            "length": 3,
+            "volume": 3,
+            "difficulty": 1,
+            "effort": 3
+          },
+          "maintainabilityIndex": 96.52468777714961,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/tsx-type-annotations.tsx": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "labelled",
+          "line": 1,
+          "column": 7,
+          "signature": "function labelled(props: { label: string }): JSX.Element",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 5,
+            "totalOperators": 1,
+            "totalOperands": 9,
+            "vocabulary": 6,
+            "length": 10,
+            "volume": 25.84962500721156,
+            "difficulty": 0.9,
+            "effort": 23.264662506490406
+          },
+          "maintainabilityIndex": 79.56756797246379,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "asserted",
+          "line": 5,
+          "column": 7,
+          "signature": "function asserted(value: unknown): string",
+          "lines": 4,
+          "logicalLines": 2,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 3,
+            "totalOperators": 1,
+            "totalOperands": 5,
+            "vocabulary": 4,
+            "length": 6,
+            "volume": 12,
+            "difficulty": 0.8333333333333334,
+            "effort": 10
+          },
+          "maintainabilityIndex": 79.1757408017311,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/zero-empty-body.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "noop",
+          "line": 1,
+          "column": 7,
+          "signature": "function noop(): void",
+          "lines": 1,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 0,
+            "distinctOperands": 1,
+            "totalOperators": 0,
+            "totalOperands": 1,
+            "vocabulary": 1,
+            "length": 1,
+            "volume": 0,
+            "difficulty": 0,
+            "effort": 0
+          },
+          "maintainabilityIndex": 99.86549707602339,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/zero-no-decisions.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "double",
+          "line": 1,
+          "column": 7,
+          "signature": "function double(value: number): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 4,
+            "vocabulary": 5,
+            "length": 6,
+            "volume": 13.931568569324174,
+            "difficulty": 1.3333333333333333,
+            "effort": 18.575424759098897
+          },
+          "maintainabilityIndex": 81.44728802389771,
+          "recursive": false
+        }
+      ]
+    }
+  }
+}

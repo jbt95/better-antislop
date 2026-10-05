@@ -6,7 +6,7 @@
  * ever touches the AST and no two rules can drift apart.
  *
  * Nested functions are scored independently and never contribute to their
- * enclosing function, matching `leadline`.
+ * enclosing function. See `docs/metrics.md` §11.
  *
  * Import from this module, not from `./analyze.ts`. The implementation may be
  * reorganised; this re-export is the stable seam.
