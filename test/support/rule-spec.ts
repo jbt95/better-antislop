@@ -66,11 +66,6 @@ export interface Pattern {
 /** What `RuleTester` accepts as a message matcher, in a form JSON can carry. */
 export type MessageMatcher = string | Pattern;
 
-/** Write a regular expression so it survives the trip into the driver. */
-export function match(expression: RegExp): Pattern {
-  return { pattern: expression.source, flags: expression.flags };
-}
-
 /** One expected error. Only the fields a test pins are modelled. */
 export interface ExpectedError {
   readonly messageId?: string;

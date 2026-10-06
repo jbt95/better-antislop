@@ -65,14 +65,14 @@ an accidental edit in `vendor/` from surviving.
 
 ## The metric specification
 
-`docs/metrics.md` is the normative specification of the metric engine. It owns
-every number the engine emits for one function, and it is the contract for the
-three metric rules and nothing else.
+`docs/metrics.md` is the stable entry point to the normative specification of the
+metric engine. Its linked pages define every number the engine emits for one
+function, and they form the contract for the three metric rules and nothing else.
 
 **The vendored rules have no specification here.** Their behaviour is upstream's,
 their messages are upstream's, and their options are upstream's. Do not document
-one in `docs/metrics.md`, and do not describe a vendored rule's semantics from
-memory — read `vendor/anti-slop/README.md` or the rule's own source.
+one in the normative metric specification linked from `docs/metrics.md`, and do not
+describe a vendored rule's semantics from memory — read `vendor/anti-slop/README.md` or the rule's own source.
 
 ## Threshold policy
 
@@ -140,12 +140,10 @@ To move the pin, change `REVISION` in the script and the revision recorded in
 diff against that record before committing it.
 
 `vendor:test` must run under `node --test`, and it is not a stylistic
-preference. Upstream's tests import `RuleTester` from `oxlint/plugins-dev`, and
-under Bun that constructor throws `RuleTester is not supported on 32-bit or
-big-endian systems, versions of NodeJS prior to v22.0.0, versions of Deno prior
-to v2.0.0, or other runtimes` before a single assertion runs. All 24 files error
-out, so a Bun run there is not a weaker check, it is no check. Under
-`node --test` all 24 pass.
+preference. Upstream's tests import `RuleTester` from `oxlint/plugins-dev`.
+Its constructor succeeds under Bun, but the first `RuleTester.run()` call fails
+when parsing starts, before an assertion runs. A Bun run there is no check.
+The script uses `node --test` to run these tests.
 
 This repository's own harness in `test/support/rule-tester.ts` works around the
 same restriction a different way, by handing each rule's cases to a
@@ -236,13 +234,14 @@ file in that directory, which is the whole corpus — and compares every metric
 against `expected.json`. It exits `0` when they all agree and non-zero on any
 difference. Do not commit a scoring change that has not passed it.
 
-The suite covers every metric `docs/metrics.md` defines, including nesting and
-the maintainability index, so a passing run is evidence for all three metric
-rules. It says nothing about the 23 vendored rules.
+The suite covers every metric in the normative specification linked from
+`docs/metrics.md`, including nesting and the maintainability index, so a passing
+run is evidence for all three metric rules. It says nothing about the 23 vendored rules.
 
 `--update` rewrites the expectations from the current output. It is how you
 propose a metric change, not how you approve one: read the rewritten diff
-against the section of `docs/metrics.md` that owns each number, and treat a
+against the page and section in the normative specification linked from
+`docs/metrics.md` that owns each number, and treat a
 change as unverified until you have. Never run `--update` and commit in the same
 step.
 
@@ -285,7 +284,8 @@ not walk `node.parent` chains.
 
 In `src/index.ts` the metric rules are spread last, so they win any name a
 vendored rule also claims. Keep it that way. They are the only rules this
-repository wrote, the only ones `docs/metrics.md` specifies, and the only ones
+repository wrote, the only ones specified by the metric specification linked
+from `docs/metrics.md`, and the only ones
 the conformance suite checks against a recorded corpus. A vendored rule is
 third-party code that arrives with a sync; if one took a metric rule's name it
 would replace a specified and verified rule with an unverified one, silently, in

@@ -1,4 +1,5 @@
-import type { FunctionKind, HalsteadMetrics } from '../../src/engine/types.ts';
+import type { ExpectedFixture, ScoredFixture, ScoredFunction } from './model.ts';
+export type { ExpectedFixture, ScoredFixture, ScoredFunction };
 
 /**
  * The comparison between a fresh measurement run and the recorded expectation.
@@ -7,42 +8,6 @@ import type { FunctionKind, HalsteadMetrics } from '../../src/engine/types.ts';
  * about Effect, so `bun test` and the command line tool can both compare
  * through the same code and a difference means the same thing to both.
  */
-
-/**
- * One function, identified by where it starts and what it declares.
- *
- * `line` alone moves when a line is inserted above and `name` alone changes
- * when a function is renamed, so the identity carries all four of `kind`,
- * `name`, `line` and `signature`. `column` is what separates two functions that
- * start on one line.
- */
-export interface ScoredFunction {
-  readonly kind: FunctionKind;
-  readonly name: string | null;
-  readonly line: number;
-  readonly column: number;
-  readonly signature: string;
-  readonly lines: number;
-  readonly logicalLines: number;
-  readonly parameters: number;
-  readonly cyclomatic: number;
-  readonly cognitive: number;
-  readonly maxNesting: number;
-  readonly halstead: HalsteadMetrics;
-  readonly maintainabilityIndex: number;
-  readonly recursive: boolean;
-}
-
-/** One fixture as a run measured it. */
-export interface ScoredFixture {
-  readonly file: string;
-  readonly functions: ReadonlyArray<ScoredFunction>;
-}
-
-/** One fixture as the golden file records it. */
-export interface ExpectedFixture {
-  readonly functions: ReadonlyArray<ScoredFunction>;
-}
 
 /** The whole golden file: every fixture, keyed by its path. */
 export interface ExpectationSet {
@@ -133,7 +98,7 @@ const KIND_ORDER: Record<DifferenceKind, number> = {
 const ANONYMOUS = '<anonymous>';
 
 /** The join key. Two functions compare when this string is equal. */
-export function identityOf(fn: ScoredFunction): string {
+function identityOf(fn: ScoredFunction): string {
   return `${fn.kind} ${fn.name ?? ANONYMOUS} ${String(fn.line)}:${String(fn.column)} ${fn.signature}`;
 }
 

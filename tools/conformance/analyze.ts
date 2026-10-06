@@ -3,7 +3,8 @@ import { readdir } from 'node:fs/promises';
 import { join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Effect, Schema } from 'effect';
-import type { ScoredFixture, ScoredFunction } from './compare.ts';
+import type { DriverFixture, ScoredFixture, ScoredFunction } from './model.ts';
+import { DriverOutputSchema } from './model.ts';
 import {
   CorpusUnreadable,
   DriverFailed,
@@ -39,55 +40,6 @@ const MAX_BUFFER = 256 * 1024 * 1024;
 
 const SAMPLE_BYTES = 400;
 
-const HalsteadSchema = Schema.Struct({
-  distinctOperators: Schema.Int,
-  distinctOperands: Schema.Int,
-  totalOperators: Schema.Int,
-  totalOperands: Schema.Int,
-  vocabulary: Schema.Int,
-  length: Schema.Int,
-  volume: Schema.Number,
-  difficulty: Schema.Number,
-  effort: Schema.Number,
-});
-
-const ScoredFunctionSchema = Schema.Struct({
-  kind: Schema.Literals([
-    'function',
-    'method',
-    'arrow',
-    'constructor',
-    'getter',
-    'setter',
-    'anonymous',
-  ]),
-  name: Schema.NullOr(Schema.String),
-  line: Schema.Int,
-  column: Schema.Int,
-  signature: Schema.String,
-  lines: Schema.Int,
-  logicalLines: Schema.Int,
-  parameters: Schema.Int,
-  cyclomatic: Schema.Int,
-  cognitive: Schema.Int,
-  maxNesting: Schema.Int,
-  halstead: HalsteadSchema,
-  maintainabilityIndex: Schema.Number,
-  recursive: Schema.Boolean,
-});
-
-const ScoredFixtureSchema = Schema.Struct({
-  file: Schema.String,
-  functions: Schema.Array(ScoredFunctionSchema),
-  error: Schema.optionalKey(Schema.String),
-});
-
-const DriverOutputSchema = Schema.Struct({
-  fixtures: Schema.Array(ScoredFixtureSchema),
-});
-
-type DriverFixture = Schema.Schema.Type<typeof ScoredFixtureSchema>;
-
 const decodeDriverOutput = Schema.decodeEffect(Schema.fromJsonString(DriverOutputSchema));
 
 /** A path joined for a golden-file key, which always uses a forward slash. */
@@ -101,13 +53,13 @@ function keyPath(directory: string, name: string): string {
  * A `.txt` extension never appears here, and `README.md` is left out because it
  * is a document rather than parser input.
  */
-export function listFixtures(
+function listFixtures(
   directory: string = FIXTURE_DIRECTORY,
 ): Effect.Effect<ReadonlyArray<string>, CorpusUnreadable> {
-  return Effect.mapError(
-    Effect.tryPromise(() => readdir(directory, { withFileTypes: true })),
-    (cause) => new CorpusUnreadable({ directory, detail: describeCause(cause) }),
-  ).pipe(
+  return Effect.tryPromise({
+    try: () => readdir(directory, { withFileTypes: true }),
+    catch: (cause) => new CorpusUnreadable({ directory, detail: describeCause(cause) }),
+  }).pipe(
     Effect.map((entries) =>
       entries
         .filter(

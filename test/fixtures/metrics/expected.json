@@ -284,6 +284,114 @@
     "test/fixtures/metrics/class-static-block.ts": {
       "functions": []
     },
+    "test/fixtures/metrics/computed-member-functions.ts": {
+      "functions": [
+        {
+          "kind": "method",
+          "name": null,
+          "line": 4,
+          "column": 2,
+          "signature": "[dynamicKey](): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 2,
+            "totalOperators": 1,
+            "totalOperands": 2,
+            "vocabulary": 3,
+            "length": 3,
+            "volume": 4.754887502163468,
+            "difficulty": 0.5,
+            "effort": 2.377443751081734
+          },
+          "maintainabilityIndex": 84.71624627594792,
+          "recursive": false
+        },
+        {
+          "kind": "arrow",
+          "name": null,
+          "line": 8,
+          "column": 2,
+          "signature": "[dynamicKey] = (): number =>",
+          "lines": 1,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 2,
+            "totalOperators": 1,
+            "totalOperands": 2,
+            "vocabulary": 3,
+            "length": 3,
+            "volume": 4.754887502163468,
+            "difficulty": 0.5,
+            "effort": 2.377443751081734
+          },
+          "maintainabilityIndex": 95.12415216859318,
+          "recursive": false
+        },
+        {
+          "kind": "anonymous",
+          "name": null,
+          "line": 12,
+          "column": 14,
+          "signature": "(): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 1,
+            "totalOperators": 1,
+            "totalOperands": 1,
+            "vocabulary": 2,
+            "length": 2,
+            "volume": 2,
+            "difficulty": 0.5,
+            "effort": 1
+          },
+          "maintainabilityIndex": 87.34977519571046,
+          "recursive": false
+        },
+        {
+          "kind": "arrow",
+          "name": null,
+          "line": 15,
+          "column": 2,
+          "signature": "[dynamicKey]: (): number =>",
+          "lines": 1,
+          "logicalLines": 0,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 2,
+            "totalOperators": 2,
+            "totalOperands": 2,
+            "vocabulary": 4,
+            "length": 4,
+            "volume": 8,
+            "difficulty": 1,
+            "effort": 8
+          },
+          "maintainabilityIndex": 93.54204911302038,
+          "recursive": false
+        }
+      ]
+    },
     "test/fixtures/metrics/else-arm-single.ts": {
       "functions": [
         {
@@ -996,6 +1104,36 @@
         }
       ]
     },
+    "test/fixtures/metrics/local-enum-runtime-values.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "localScale",
+          "line": 1,
+          "column": 7,
+          "signature": "function localScale(value: number): number",
+          "lines": 7,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 7,
+            "totalOperators": 2,
+            "totalOperands": 10,
+            "vocabulary": 9,
+            "length": 12,
+            "volume": 38.039100017307746,
+            "difficulty": 1.4285714285714286,
+            "effort": 54.34157145329678
+          },
+          "maintainabilityIndex": 70.36576595138195,
+          "recursive": false
+        }
+      ]
+    },
     "test/fixtures/metrics/nested-arrow-decisions-isolated.ts": {
       "functions": [
         {
@@ -1134,6 +1272,62 @@
             "effort": 664.3856189774725
           },
           "maintainabilityIndex": 57.57369956172306,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/nesting-else-arm-contents.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "nestedIfInElse",
+          "line": 1,
+          "column": 7,
+          "signature": "function nestedIfInElse(a: boolean, b: boolean): number",
+          "lines": 10,
+          "logicalLines": 5,
+          "parameters": 2,
+          "cyclomatic": 3,
+          "cognitive": 3,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 6,
+            "totalOperators": 6,
+            "totalOperands": 8,
+            "vocabulary": 9,
+            "length": 14,
+            "volume": 44.37895002019237,
+            "difficulty": 2,
+            "effort": 88.75790004038474
+          },
+          "maintainabilityIndex": 66.2489720175169,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "nestedIfInElseIf",
+          "line": 12,
+          "column": 7,
+          "signature": "function nestedIfInElseIf(a: boolean, b: boolean, c: boolean): number",
+          "lines": 10,
+          "logicalLines": 6,
+          "parameters": 3,
+          "cyclomatic": 4,
+          "cognitive": 3,
+          "maxNesting": 1,
+          "halstead": {
+            "distinctOperators": 3,
+            "distinctOperands": 7,
+            "totalOperators": 7,
+            "totalOperands": 10,
+            "vocabulary": 10,
+            "length": 17,
+            "volume": 56.47277761308516,
+            "difficulty": 2.142857142857143,
+            "effort": 121.01309488518247
+          },
+          "maintainabilityIndex": 65.38162350999423,
           "recursive": false
         }
       ]
@@ -1880,14 +2074,14 @@
             "distinctOperators": 3,
             "distinctOperands": 3,
             "totalOperators": 3,
-            "totalOperands": 8,
+            "totalOperands": 6,
             "vocabulary": 6,
-            "length": 11,
-            "volume": 28.43458750793272,
-            "difficulty": 4,
-            "effort": 113.73835003173087
+            "length": 9,
+            "volume": 23.264662506490403,
+            "difficulty": 3,
+            "effort": 69.79398751947122
           },
-          "maintainabilityIndex": 83.11898423934672,
+          "maintainabilityIndex": 83.72921091560589,
           "recursive": false
         }
       ]
@@ -1992,14 +2186,14 @@
             "distinctOperators": 2,
             "distinctOperands": 3,
             "totalOperators": 2,
-            "totalOperands": 7,
+            "totalOperands": 5,
             "vocabulary": 5,
-            "length": 9,
-            "volume": 20.89735285398626,
-            "difficulty": 2.3333333333333335,
-            "effort": 48.76048999263461
+            "length": 7,
+            "volume": 16.253496664211536,
+            "difficulty": 1.6666666666666667,
+            "effort": 27.089161107019226
           },
-          "maintainabilityIndex": 80.2142947126916,
+          "maintainabilityIndex": 80.97852572266862,
           "recursive": false
         },
         {
@@ -2018,14 +2212,14 @@
             "distinctOperators": 4,
             "distinctOperands": 4,
             "totalOperators": 5,
-            "totalOperands": 11,
+            "totalOperands": 9,
             "vocabulary": 8,
-            "length": 16,
-            "volume": 48,
-            "difficulty": 5.5,
-            "effort": 264
+            "length": 14,
+            "volume": 42,
+            "difficulty": 4.5,
+            "effort": 189
           },
-          "maintainabilityIndex": 77.68551793383368,
+          "maintainabilityIndex": 78.09157830906615,
           "recursive": false
         }
       ]
@@ -2074,14 +2268,14 @@
             "distinctOperators": 1,
             "distinctOperands": 2,
             "totalOperators": 1,
-            "totalOperands": 4,
+            "totalOperands": 3,
             "vocabulary": 3,
-            "length": 5,
-            "volume": 7.92481250360578,
-            "difficulty": 1,
-            "effort": 7.92481250360578
+            "length": 4,
+            "volume": 6.339850002884624,
+            "difficulty": 0.75,
+            "effort": 4.754887502163468
           },
-          "maintainabilityIndex": 83.1628584142034,
+          "maintainabilityIndex": 83.84142359948639,
           "recursive": false
         },
         {
@@ -2706,6 +2900,36 @@
         }
       ]
     },
+    "test/fixtures/metrics/shorthand-default-pattern.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "withShorthandDefault",
+          "line": 1,
+          "column": 7,
+          "signature": "function withShorthandDefault({ size = 1 }: { size?: number }): number",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 2,
+            "distinctOperands": 3,
+            "totalOperators": 2,
+            "totalOperands": 4,
+            "vocabulary": 5,
+            "length": 6,
+            "volume": 13.931568569324174,
+            "difficulty": 1.3333333333333333,
+            "effort": 18.575424759098897
+          },
+          "maintainabilityIndex": 81.44728802389771,
+          "recursive": false
+        }
+      ]
+    },
     "test/fixtures/metrics/switch-with-default.ts": {
       "functions": [
         {
@@ -2762,6 +2986,62 @@
             "effort": 126.51635633873543
           },
           "maintainabilityIndex": 66.57529714226816,
+          "recursive": false
+        }
+      ]
+    },
+    "test/fixtures/metrics/template-cooked-and-raw.ts": {
+      "functions": [
+        {
+          "kind": "function",
+          "name": "cookedTemplate",
+          "line": 1,
+          "column": 7,
+          "signature": "function cookedTemplate(name: string): string",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 3,
+            "totalOperators": 1,
+            "totalOperands": 5,
+            "vocabulary": 4,
+            "length": 6,
+            "volume": 12,
+            "difficulty": 0.8333333333333334,
+            "effort": 10
+          },
+          "maintainabilityIndex": 81.90114990916902,
+          "recursive": false
+        },
+        {
+          "kind": "function",
+          "name": "rawTemplate",
+          "line": 5,
+          "column": 7,
+          "signature": "function rawTemplate(): string",
+          "lines": 3,
+          "logicalLines": 1,
+          "parameters": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "maxNesting": 0,
+          "halstead": {
+            "distinctOperators": 1,
+            "distinctOperands": 4,
+            "totalOperators": 1,
+            "totalOperands": 4,
+            "vocabulary": 5,
+            "length": 5,
+            "volume": 11.60964047443681,
+            "difficulty": 0.5,
+            "effort": 5.804820237218405
+          },
+          "maintainabilityIndex": 82.00171614982087,
           "recursive": false
         }
       ]

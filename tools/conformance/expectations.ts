@@ -1,6 +1,8 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { Effect, Schema } from 'effect';
-import type { ExpectedFixture, ExpectationSet, ScoredFixture } from './compare.ts';
+import type { ExpectationSet } from './compare.ts';
+import { ExpectationsSchema } from './model.ts';
+import type { ExpectedFixture, ScoredFixture } from './model.ts';
 import {
   ExpectationsMissing,
   ExpectationsUnreadable,
@@ -19,52 +21,6 @@ import {
 
 /** Where the file sits, relative to the package root. */
 export const EXPECTATIONS_PATH = 'test/fixtures/metrics/expected.json';
-
-const HalsteadSchema = Schema.Struct({
-  distinctOperators: Schema.Int,
-  distinctOperands: Schema.Int,
-  totalOperators: Schema.Int,
-  totalOperands: Schema.Int,
-  vocabulary: Schema.Int,
-  length: Schema.Int,
-  volume: Schema.Number,
-  difficulty: Schema.Number,
-  effort: Schema.Number,
-});
-
-const ScoredFunctionSchema = Schema.Struct({
-  kind: Schema.Literals([
-    'function',
-    'method',
-    'arrow',
-    'constructor',
-    'getter',
-    'setter',
-    'anonymous',
-  ]),
-  name: Schema.NullOr(Schema.String),
-  line: Schema.Int,
-  column: Schema.Int,
-  signature: Schema.String,
-  lines: Schema.Int,
-  logicalLines: Schema.Int,
-  parameters: Schema.Int,
-  cyclomatic: Schema.Int,
-  cognitive: Schema.Int,
-  maxNesting: Schema.Int,
-  halstead: HalsteadSchema,
-  maintainabilityIndex: Schema.Number,
-  recursive: Schema.Boolean,
-});
-
-const ExpectedFixtureSchema = Schema.Struct({
-  functions: Schema.Array(ScoredFunctionSchema),
-});
-
-const ExpectationsSchema = Schema.Struct({
-  specification: Schema.String,
-  fixtures: Schema.Record(Schema.String, ExpectedFixtureSchema),
-});
 
 const decodeExpectations = Schema.decodeEffect(Schema.fromJsonString(ExpectationsSchema));
 
@@ -92,7 +48,7 @@ export function expectationsFromMeasurements(
 }
 
 /** The file as text: two-space indentation and a trailing newline. */
-export function renderExpectations(set: ExpectationSet): string {
+function renderExpectations(set: ExpectationSet): string {
   return `${JSON.stringify({ specification: 'docs/metrics.md', fixtures: set.fixtures }, null, 2)}\n`;
 }
 

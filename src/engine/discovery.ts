@@ -166,6 +166,7 @@ function propertyKeyName(node: ESTree.Node): string | null {
   }
   // A computed key (`[key]`) and a string-literal key (`'key'`) have no name
   // readable from the tree alone: only the source text carries one.
+  if (node.computed) return null;
   return node.key.type === 'Identifier' || node.key.type === 'PrivateIdentifier'
     ? node.key.name
     : null;

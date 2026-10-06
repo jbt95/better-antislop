@@ -15,7 +15,7 @@ import type { HalsteadMetrics } from './types.ts';
  * every score the report carries: logical lines, cyclomatic complexity, cognitive
  * complexity, maximum nesting, direct self-recursion and the Halstead tally.
  *
- * The scoring rules are the ones specified in `docs/metrics.md`, §3 to §6. The
+ * The scoring rules are the ones specified in `docs/complexity.md`, §3 to §6. The
  * decision constructs are read from a table, so adding one is an entry rather
  * than another branch.
  */
@@ -29,6 +29,8 @@ interface Frame {
   readonly insideLogical: boolean;
   /** True for the `if` of an `else if`, which continues its parent chain. */
   readonly elseIf: boolean;
+  /** True when this is a shorthand property's default pattern value. */
+  readonly shorthandDefault: boolean;
 }
 
 /** Every score one function earns from its own syntax. */
@@ -135,7 +137,9 @@ function walkFunction(
   name: string | null,
   scores: WalkScores,
 ): void {
-  const stack: Frame[] = [{ node: anchor, nesting: 0, insideLogical: false, elseIf: false }];
+  const stack: Frame[] = [
+    { node: anchor, nesting: 0, insideLogical: false, elseIf: false, shorthandDefault: false },
+  ];
   while (stack.length > 0) {
     const frame = stack.pop();
     if (frame === undefined) break;
@@ -260,17 +264,69 @@ function callsSelf(call: ESTree.CallExpression, name: string): boolean {
   return false;
 }
 
+/** The depth the children of one node inherit. */
+function nestingForChildren(node: ESTree.Node, frame: Frame): number {
+  return frame.elseIf || !raisesNesting(node) ? frame.nesting : frame.nesting + 1;
+}
+
+/** The alternate `if` that continues its parent chain. */
+function elseIfArmOf(node: ESTree.Node): ESTree.Node | null {
+  return node.type === 'IfStatement' && node.alternate?.type === 'IfStatement'
+    ? node.alternate
+    : null;
+}
+
+/** The alternate arm inherits the parent `if` depth. */
+function childNesting(
+  node: ESTree.Node,
+  child: ESTree.Node,
+  frame: Frame,
+  nesting: number,
+): number {
+  return node.type === 'IfStatement' && child === node.alternate ? frame.nesting : nesting;
+}
+
+/** The value node that repeats a shorthand key in the AST. */
+function duplicateShorthandNode(node: ESTree.Node): ESTree.Node | null {
+  if (node.type !== 'Property' || !node.shorthand) return null;
+  if (node.value.type === 'Identifier') return node.value;
+  if (node.value.type === 'AssignmentPattern' && node.value.left.type === 'Identifier') {
+    return node.value;
+  }
+  return null;
+}
+
+/** True when a child is the second AST node for a shorthand name. */
+function isDuplicateShorthandName(
+  node: ESTree.Node,
+  child: ESTree.Node,
+  frame: Frame,
+  duplicate: ESTree.Node | null,
+): boolean {
+  if (child === duplicate && child.type === 'Identifier') return true;
+  return frame.shorthandDefault && node.type === 'AssignmentPattern' && child === node.left;
+}
+
 /** Queue a node's children so the stack pops them in source order. */
 function pushChildFrames(stack: Frame[], node: ESTree.Node, frame: Frame): void {
-  // `try` is not structural: it groups statements without adding a level.
-  const nesting = frame.elseIf || !raisesNesting(node) ? frame.nesting : frame.nesting + 1;
-  const alternate = node.type === 'IfStatement' ? node.alternate : null;
-  const elseIfArm = alternate !== null && alternate.type === 'IfStatement' ? alternate : null;
+  // `try` and alternate `if` arms group statements without adding a level.
+  const nesting = nestingForChildren(node, frame);
+  const elseIfArm = elseIfArmOf(node);
   const insideLogical = frame.insideLogical || startsLogicalSequence(node);
+  const duplicate = duplicateShorthandNode(node);
   const children = childrenOf(node);
   for (let index = children.length - 1; index >= 0; index -= 1) {
     const child = children[index];
     if (child === undefined) continue;
-    stack.push({ node: child, nesting, insideLogical, elseIf: child === elseIfArm });
+    // The key node already counts the single name written by a shorthand.
+    if (isDuplicateShorthandName(node, child, frame, duplicate)) continue;
+    stack.push({
+      node: child,
+      // An alternate arm inherits the `if` depth; it does not open a level.
+      nesting: childNesting(node, child, frame, nesting),
+      insideLogical,
+      elseIf: child === elseIfArm,
+      shorthandDefault: child === duplicate && child.type === 'AssignmentPattern',
+    });
   }
 }

@@ -1,10 +1,11 @@
 # The metrics corpus
 
 Checked-in inputs for the metric engine. Each file is a small, self-contained
-program written to make one rule easy to check and one wrong answer easy to
-find. The expectations are not stored here: they belong to the specification
-and to the test that reads this directory, so a fixture never states its own
-score.
+program written to make one rule easy to check and one wrong answer easy to find.
+
+The expected values are collected in [`expected.json`](expected.json) beside this
+index, not inside each fixture. [`docs/metrics.md`](../../../docs/metrics.md)
+defines their meaning; each fixture supplies only input.
 
 ## Conventions
 
@@ -21,9 +22,11 @@ are deliberate: `oxlint.config.ts` lists `test/fixtures/**` under
 They are still real TypeScript and the conformance suite still parses them; they
 are simply not code anyone maintains.
 
-**No comments.** Fixtures carry no comments. The maintainability index is
-computed from the physical line span of a function, so a leading comment would
-move every number in the file. Explanations live in this document instead.
+**No comments.** Keep fixture source comment-free. A comment inside a function's
+span adds a physical line and can change `lines` and the maintainability index.
+A file-leading comment shifts function locations used by conformance identity,
+but does not change those metric values. Comment text itself is not scored.
+Explanations live here instead.
 
 **Small files.** One fixture tests one thing wherever that is possible. Where a
 rule has several shapes — every loop kind, both positions of a chained ternary,
@@ -42,7 +45,7 @@ one file so they can be compared directly.
 | Fixture                             | What it isolates                                                                                                                                                                                                                                                                                                                |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `logical-and-single.ts`             | One `&&`.                                                                                                                                                                                                                                                                                                                       |
-| `logical-or-single.ts`              | One `                                                                                                                                                                                                                                                                                                                           |     | `.  |
+| `logical-or-single.ts`              | One logical OR expression.                                                                                                                                                                                                                                                                                                    |
 | `logical-and-repeated.ts`           | Three `&&` in a row: every operator is a branch point, but repeating the same operator adds nothing beyond the first.                                                                                                                                                                                                           |
 | `logical-or-repeated.ts`            | The same, for `\|\|`.                                                                                                                                                                                                                                                                                                           |
 | `logical-mixed-tree-order.ts`       | **The ordering discriminator.** `a \|\| b && c \|\| d && e` puts the outermost `\|\|` at the root of the tree, so a preorder walk reads the operators as `\|\|, \|\|, &&, &&` and settles on a lower total. Reading in the order the operators are written gives `\|\|, &&, \|\|, &&` and an operator change at every position. |
@@ -74,6 +77,7 @@ can be read off its shape.
 | `else-arm-single.ts`                     | One `if` with an `else`. The trailing arm adds a point and opens no level.                                                           |
 | `else-if-chain.ts`                       | A three-link `else if` chain ending in `else`. A chain continues flat: each link costs the same regardless of how deep the chain is. |
 | `else-if-chain-without-trailing-else.ts` | The same chain with no trailing `else`, so the last link costs one point fewer.                                                      |
+| `nesting-else-arm-contents.ts` | A nested `if` inside `else` and `else if` arms. Neither arm raises depth for its contents. |
 
 ## `switch`
 
@@ -134,6 +138,13 @@ nothing else.
 | `signature-abstract-method.ts`         | A bodyless abstract method beside a concrete one in the same class.                                                                          |
 | `signature-ambient-class.ts`           | A bodyless method in a `declare class`.                                                                                                      |
 
+## TypeScript runtime syntax
+
+| Fixture                        | What it isolates                                                                      |
+| ------------------------------ | ------------------------------------------------------------------------------------- |
+| `local-enum-runtime-values.ts` | A local enum's name, member names and explicit initializer expressions are walked.    |
+
+
 ## JSX and TSX
 
 Parsed with the TSX dialect. `JSXIdentifier` is an operand like any other
@@ -155,6 +166,7 @@ The text of a template is an operand. Only what is interpolated is source.
 | `template-operators-as-text.ts`       | **The text discriminator.** A quasi whose text reads `a && b \|\| c ? d : e \|\|` must contribute one operand and no operators, while the `&&` inside the interpolation is a real one. The second function has two quasis, so it contributes two operands. |
 | `template-interpolated-expression.ts` | A ternary inside an interpolation. It is scored like any other expression.                                                                                                                                                                                 |
 | `template-tagged.ts`                  | A tagged template. The tag and the call around the literal change nothing inside it.                                                                                                                                                                       |
+| `template-cooked-and-raw.ts`          | A Unicode escape in a quasi contributes cooked text; an invalid tagged escape contributes its raw text.                                                                                   |
 
 ## Generators
 
@@ -170,6 +182,7 @@ The text of a template is an operand. Only what is interpolated is source.
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `parameters-destructured-object.ts`    | A destructured object parameter, then the same with a default. A pattern is still one parameter; a default writes `=`.   |
 | `parameters-default-rest-and-array.ts` | A default value, a rest element and a destructured array, each as its own function.                                      |
+| `shorthand-default-pattern.ts` | A shorthand binding with a default. Its name occurs once; `=` and the default value are still counted. |
 | `parameters-arrow-destructured.ts`     | A destructured parameter on an arrow, which takes its name from the binding it was assigned to.                          |
 | `class-parameter-properties.ts`        | Parameter properties in a constructor. Each is one parameter, and the declaration it wraps is still reached by the walk. |
 
@@ -180,11 +193,12 @@ The text of a template is an operand. Only what is interpolated is source.
 | `class-method-instance-and-static.ts`        | An instance method and a static one. Both are methods; `static` is not a node of its own.                                                                                                                                             |
 | `class-accessor-getter-setter.ts`            | A getter and a setter over a private field, so the getter and setter kinds and a `#name` operand all appear together.                                                                                                                 |
 | `class-static-block.ts`                      | A `static` initialisation block. It holds a branch and is walked, but it is not a function and is never reported as one.                                                                                                              |
-| `class-field-arrow-function.ts`              | Arrow functions held in class fields, instance and static. The field supplies the name and the method kind.                                                                                                                           |
+| `class-field-arrow-function.ts`              | Arrow functions held in class fields, instance and static. The field supplies the name; each function reports kind `arrow`. |
 | `class-private-name.ts`                      | A private field read and written through `this`. The `#name` is an operand written once.                                                                                                                                              |
 | `object-literal-members.ts`                  | Every object-literal shape at once: a keyed property, a shorthand, a method, a getter, a setter and an arrow-valued property. A shorthand writes no colon; a keyed property does.                                                     |
 | `property-colon-initialiser-vs-shorthand.ts` | **The colon discriminator.** An initialiser property against a shorthand one of the same shape, plus one literal holding two colons. `{ a: 1 }` writes `:` and `{ a }` does not; two colons count once distinctly and twice in total. |
 | `property-colon-method-shorthand.ts`         | A method shorthand with and without an enclosing function. The method is scored on its own either way; the colon reaches only the function that surrounds it. A module-level fixture alone cannot show this half.                     |
+| `computed-member-functions.ts`                  | Computed class-member and object-property keys do not provide a function name. |
 
 ## Operators and tokens
 
@@ -198,3 +212,6 @@ write one and which write none.
 | `operator-new-and-meta-properties.ts`  | `new` as an operator, `new.target` as one, and `import.meta` as none.                                 |
 | `operator-non-null-assertion.ts`       | The `!` of a non-null assertion, which is an operator the expression writes.                          |
 | `throw-statement.ts`                   | `throw`. It adds a branch and no cognitive cost, and opens no level.                                  |
+| `optional-chain-call.ts`                   | An optional call using `handler?.()`.                                                                                                                        |
+| `optional-chain-member.ts`                 | Two optional member accesses in one chain.                                                                                                                    |
+| `optional-chain-plain-member-control.ts`    | The same member read in plain and optional forms, as a control pair.                                                                                           |

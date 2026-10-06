@@ -28,7 +28,7 @@ export type FunctionKind =
   | 'anonymous';
 
 /**
- * Halstead measures, as specified in `docs/metrics.md` §7.
+ * Halstead measures, as specified in `docs/halstead.md` §7.
  *
  * `n1`/`n2` count distinct operators/operands; `N1`/`N2` count their total
  * occurrences. `volume`, `difficulty` and `effort` derive from those four.
