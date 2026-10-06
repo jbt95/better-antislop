@@ -87,32 +87,60 @@ The corpus and benchmark runner are not checked in, so these figures cannot be
 reproduced from a checkout. Treat them as recorded measurements, not a benchmark
 guarantee.
 
-## Package availability
+## Source distribution
 
-This package is not published to npm yet, so registry installation is
-unavailable.
+This project is not published to npm and is not intended to be installed as a
+Git or npm dependency. It follows the delivery model of
+[`dmmulroy/anti-slop`](https://github.com/dmmulroy/anti-slop): install a copy of
+the TypeScript source into the consuming repository and load that local source
+file. Node does not strip TypeScript from entrypoints inside `node_modules`, so
+this avoids both that failure and a generated-JavaScript build step.
 
-The package defines one export, `.` at `./src/index.ts`. oxlint loads JS plugins
-with a dynamic import and transpiles TypeScript itself, so the package needs no
-build artifact. This follows upstream `anti-slop`, whose own `package.json` also
-exports `./src/index.ts` directly.
+### Install with the agent skill
 
-Tested against oxlint `1.87.0` and `@oxlint/plugins` `1.87.0`. Keep the two on
-the same exact version: the JS plugin API is versioned in lockstep with the
-binary that loads it.
+```sh
+npx skills add jbt95/better-antislop --skill install-better-antislop
+```
+
+Then ask your coding agent to install and configure better-antislop. The skill
+copies the runtime source, licenses, and provenance to
+`tools/oxlint/better-antislop/`. The installer refuses to overwrite an existing
+copy and does not modify the target manifest or lint configuration.
+
+For a different destination, the script takes it as its first argument. The
+script is available at
+`skills/install-better-antislop/scripts/install.mjs` in this repository.
+
+### Runtime dependency
+
+Install `@oxlint/plugins` at exactly the same version as the consuming
+repository's `oxlint`; their JavaScript plugin API is versioned in lockstep.
+The plugin is tested with both at `1.87.0`. Use Node `22.18.0` or newer, or
+Bun, for Oxlint's local TypeScript plugin loading.
 
 ## Configure
 
 One plugin. Every rule key is `better-antislop/<rule>`. A JS plugin rule is not
-active until your config names it, so nothing in this package is on by default
+active until your config names it, so nothing in this source is on by default
 in the sense of being implicit — see
 [What "off by default" buys you](provenance.md#what-off-by-default-buys-you).
+
+The examples assume the default install path. If you used another destination,
+update the `specifier` and both ignore paths. Merge these entries with existing
+configuration rather than replacing it. Ignore the vendored plugin in both
+Oxlint and the formatter so its upstream source is not linted or rewritten.
 
 ### `.oxlintrc.json`
 
 ```json
 {
-  "jsPlugins": ["oxlint-plugin-better-antislop"],
+  "ignorePatterns": ["tools/oxlint/better-antislop/**"],
+  "jsPlugins": [
+    {
+      "name": "better-antislop",
+      "specifier": "./tools/oxlint/better-antislop/src/index.ts"
+    }
+  ],
   "rules": {
     "better-antislop/cognitive-complexity": ["error", { "limit": 15 }],
     "better-antislop/max-nesting-depth": ["error", { "limit": 4 }],
@@ -122,13 +150,22 @@ in the sense of being implicit — see
 }
 ```
 
+Add `tools/oxlint/better-antislop/**` to the formatter's ignore patterns as
+well.
+
 ### `oxlint.config.ts`
 
 ```ts
 import { defineConfig } from 'oxlint';
 
 export default defineConfig({
-  jsPlugins: ['oxlint-plugin-better-antislop'],
+  ignorePatterns: ['tools/oxlint/better-antislop/**'],
+  jsPlugins: [
+    {
+      name: 'better-antislop',
+      specifier: './tools/oxlint/better-antislop/src/index.ts',
+    },
+  ],
   rules: {
     'better-antislop/cognitive-complexity': ['error', { limit: 15 }],
     'better-antislop/max-nesting-depth': ['error', { limit: 4 }],
@@ -140,7 +177,7 @@ export default defineConfig({
 
 ### Run the linter
 
-After you add either configuration, run:
+After merging the configuration, run:
 
 ```sh
 bunx oxlint .
@@ -148,12 +185,17 @@ bunx oxlint .
 
 ### Aliasing the plugin
 
-Use the object form when a plugin name would collide with something else. The
-alias replaces the prefix in every rule name.
+Use another `name` when the default prefix would collide. The alias replaces
+the prefix in every rule name; the local `specifier` remains the same.
 
 ```json
 {
-  "jsPlugins": [{ "name": "house", "specifier": "oxlint-plugin-better-antislop" }],
+  "jsPlugins": [
+    {
+      "name": "house",
+      "specifier": "./tools/oxlint/better-antislop/src/index.ts"
+    }
+  ],
   "rules": {
     "house/cognitive-complexity": ["error", { "limit": 15 }]
   }

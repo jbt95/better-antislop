@@ -89,9 +89,9 @@ describe('better-antislop', () => {
     }
   });
 
-  it('publishes under the prefix every rule key in oxlint.config.ts carries', () => {
+  it('exposes under the prefix every rule key in oxlint.config.ts carries', () => {
     if (plugin.meta?.name !== 'better-antislop') {
-      throw new Error(`the plugin publishes as ${String(plugin.meta?.name)}`);
+      throw new Error(`the plugin is named ${String(plugin.meta?.name)}`);
     }
   });
 });

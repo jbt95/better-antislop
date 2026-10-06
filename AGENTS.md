@@ -5,9 +5,13 @@ anything.
 
 ## What this repository is
 
-The npm package is `oxlint-plugin-better-antislop`. It publishes **one** oxlint JS
-plugin, named `better-antislop`, from a single entry point. Its `exports` map
-points straight at the TypeScript source: `.` resolves to `./src/index.ts`.
+This repository is the source project for `oxlint-plugin-better-antislop`; its
+package is marked private. It is not distributed as an npm or Git dependency:
+consumers vendor its TypeScript source into their repository and point Oxlint
+at the local `.ts` entrypoint.
+Node does not strip TypeScript from files under `node_modules`, so do not tell
+consumers to load this package from there or add a JavaScript build step. The
+package `exports` entry exists for local source use only.
 
 Every rule key is `better-antislop/<rule>`. There is no second plugin and no
 second prefix; `better-antislop-metrics/…` no longer exists and must not come
@@ -30,6 +34,19 @@ reused.
 `src/engine/` is the shared metric engine. Its public interface is
 `src/engine/types.ts` and `src/engine/contract.ts`. Treat those two files as
 fixed: everything else adapts to them.
+
+## Source-delivered installation
+
+`skills/install-better-antislop/assets/better-antislop/` is the installable
+source snapshot. It mirrors the runtime files in `src/` and
+`vendor/anti-slop/src/`, excludes tests, and carries all license files plus an upstream
+record. Consumers copy this directory into their own repository and
+register `src/index.ts` through Oxlint's local-plugin `specifier` form. This is
+the supported delivery path; no JavaScript is generated.
+
+Run `bun run sync:skill-assets` after changing runtime source or the vendored
+revision. `bun run check:skill-assets` compares every file and is part of the
+pre-commit gate. Do not edit the generated asset snapshot directly.
 
 ## `vendor/` is third-party source
 
@@ -165,13 +182,15 @@ bun run vendor:test     # the vendored rules' own tests, under node --test
 bun run format          # oxfmt, writes formatting, reads .oxfmtrc.json
 bun run format:check    # oxfmt --check
 bun run check           # the pre-commit gate
-bun run vendor:sync     # re-vendor the pinned revision
+bun run vendor:sync       # re-vendor the pinned revision
+bun run sync:skill-assets # refresh the local-source installer snapshot
+bun run check:skill-assets # verify the snapshot matches runtime source
 ```
 
 The trailing slash in `bun test ./test/` is load-bearing. `bun test test` does
 not scope, because `test` is a substring of the vendored test paths and the run
-would pick those up too. `bun run check` chains typecheck, lint, test,
-conformance, `vendor:test` and `format:check`; `vendor:test` is in the gate
+would pick those up too. `bun run check` chains typecheck, lint, test, conformance, `vendor:test`, the
+skill-asset drift check, and `format:check`; `vendor:test` is in the gate
 because it is the only check that covers the 23 rules this repository does not
 own.
 

@@ -12,5 +12,12 @@
   "objectWrap": "preserve",
   "endOfLine": "lf",
   "insertFinalNewline": true,
-  "ignorePatterns": ["node_modules", "dist", "oxprobe-artifacts", "test/fixtures", "vendor"]
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "oxprobe-artifacts",
+    "test/fixtures",
+    "vendor",
+    "skills/install-better-antislop/assets/**"
+  ]
 }

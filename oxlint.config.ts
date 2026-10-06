@@ -2,10 +2,10 @@ import { defineConfig } from 'oxlint';
 
 /**
  * Lint configuration for this repository's own source.
- * The single `jsPlugins` entry is the plugin this package publishes: the three
- * metric rules and the rules vendored from `dmmulroy/anti-slop`, merged. It is
- * loaded from source on purpose, so a change to any rule it carries must fail
- * the repository's own lint run, not only the conformance suite.
+ * The single `jsPlugins` entry is this repository's local source plugin: the
+ * three metric rules and the rules vendored from `dmmulroy/anti-slop`, merged.
+ * Loading the local TypeScript entry directly means source changes are checked
+ * without a JavaScript build step.
  */
 export default defineConfig({
   plugins: ['eslint', 'oxc', 'typescript', 'unicorn', 'import', 'promise'],
@@ -33,8 +33,13 @@ export default defineConfig({
   // is not a type predicate, which `no-runtime-typeof` rejects even with
   // `allowInTypeGuards`. Those findings cannot be acted on here, so the tree is
   // out of the lint.
-  ignorePatterns: ['oxprobe-artifacts', 'test/fixtures/**', 'vendor/**'],
-  jsPlugins: ['./src/index.ts'],
+  ignorePatterns: [
+    'oxprobe-artifacts',
+    'test/fixtures/**',
+    'vendor/**',
+    'skills/install-better-antislop/assets/**',
+  ],
+  jsPlugins: [{ name: 'better-antislop', specifier: './src/index.ts' }],
   rules: {
     // `cognitive-complexity` keeps the shipped default of 15. It sits in a gap
     // rather than inside a crowd: it names four functions here, and the scores

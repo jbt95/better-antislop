@@ -8,14 +8,40 @@ An oxlint plugin with function-level complexity metrics and TypeScript safety ru
 It contains three metric rules written here and 23 vendored rules from
 [`dmmulroy/anti-slop`](https://github.com/dmmulroy/anti-slop).
 
-> **Unpublished:** npm installation is not available. The configuration below is for
-> a published release.
+> **Source-distributed:** the package is marked private and is not an npm plugin
+> dependency. Install its TypeScript source into your repository; no JavaScript
+> build step is needed.
+
+## Install
+
+Use the installer skill to copy the source into your repository:
+
+```sh
+npx skills add jbt95/better-antislop --skill install-better-antislop
+```
+
+Then ask your coding agent to install and configure better-antislop. The skill
+copies the TypeScript source to `tools/oxlint/better-antislop/`, matches
+`@oxlint/plugins` to the repository's Oxlint version, and registers a local
+`.ts` entrypoint. It refuses to overwrite an existing copy.
+
+For a manual install from a clone of this repository, run
+`node /path/to/better-antislop/skills/install-better-antislop/scripts/install.mjs`
+from the consuming repository root. The script only copies files; merge the
+configuration below with the target's existing configuration and add the
+installed path to its formatter ignores.
 
 ## Configure
 
 ```json
 {
-  "jsPlugins": ["oxlint-plugin-better-antislop"],
+  "ignorePatterns": ["tools/oxlint/better-antislop/**"],
+  "jsPlugins": [
+    {
+      "name": "better-antislop",
+      "specifier": "./tools/oxlint/better-antislop/src/index.ts"
+    }
+  ],
   "rules": {
     "better-antislop/cognitive-complexity": ["error", { "limit": 15 }],
     "better-antislop/max-nesting-depth": ["error", { "limit": 4 }],
@@ -24,7 +50,9 @@ It contains three metric rules written here and 23 vendored rules from
 }
 ```
 
-Tested with oxlint `1.87.0` and `@oxlint/plugins` `1.87.0`.
+Keep `oxlint` and `@oxlint/plugins` on the same exact version. Tested with
+`1.87.0`. The source entrypoint must be local to the consuming repository;
+loading TypeScript from inside `node_modules` can fail under Node's type stripping.
 
 ## Documentation
 
